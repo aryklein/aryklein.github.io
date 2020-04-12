@@ -87,7 +87,7 @@ Creating your site
 ------------------
 
 I will only cover how to initialize your site, create a simple ``Hello World`` post and
-deploy it to **Github Pages**. I strongly recommend to read the official `handbook
+deploy it to **Github Pages**. I strongly recommend that you read the official `handbook
 <https://getnikola.com/handbook.html>`_ for more details about Nikola's commands and how
 to tweak your site through the ``conf.py`` file.
 
@@ -96,11 +96,10 @@ will launch a wizard, that will configure your site. After that, you will see ne
 and directories, including the config file ``conf.py`` that is used to set many options.
 
 
-
 Now you can create your first post running ``nikola new_post``. With the default settings,
 this command will create a new ``.rst`` file in the ``posts`` directory. You can use your
-favorite text editor (like Vim), to write your first post there. That would be your Hello
-World.
+favorite text editor (like Vim), to write your first post there. That would be your "Hello
+World".
 
 When finish writing your post, you can render the site with ``nikola build``. That will
 create all HTML files in the ``output`` directory.
@@ -178,4 +177,4 @@ Github website, go to your repository ``<username>.github.io``, *Settings* and c
   <p style="text-align:center"><br><small>Did you find any errors? Please send me a
   <a class="reference external"
   href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/how-to-create-your-blog-for-free.rst">
-  pull request</a>. The code of this article is available in Github.</small></p>
+  pull request</a>. The code of this article is available on Github.</small></p>
