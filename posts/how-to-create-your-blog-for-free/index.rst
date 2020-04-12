@@ -51,13 +51,14 @@ to create a simple ``Makefile`` in the local repository to manage your Nikola en
 .. code-block:: bash
 
   SHELL=bash
+
   .DEFAULT_GOAL := install
 
   install: env
         .env/bin/pip install --upgrade "Nikola[extras]"
 
   env: clean
-        }python3 -m venv .env
+        python3 -m venv .env
         .env/bin/pip install --upgrade pip setuptools wheel
 
   clean:
@@ -176,5 +177,5 @@ Github website, go to your repository ``<username>.github.io``, *Settings* and c
 
   <p style="text-align:center"><br><small>Did you find any errors? Please send me a
   <a class="reference external"
-  href="https://github.com/aryklein/aryklein.github.com/edit/src/post/how-to-create-your-blog-for-free.rst">
+  href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/how-to-create-your-blog-for-free.rst">
   pull request</a>. The code of this article is available in Github.</small></p>
