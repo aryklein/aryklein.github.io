@@ -7,14 +7,22 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://ary.kleinerman.org/</loc>
-  <lastmod>2020-04-04T21:06:00Z</lastmod>
+  <lastmod>2020-04-11T16:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ary.kleinerman.org/2020/</loc>
+  <lastmod>2020-04-11T16:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/archive.html</loc>
-  <lastmod>2020-04-04T21:09:00Z</lastmod>
+  <lastmod>2020-04-11T22:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/</loc>
-  <lastmod>2020-04-04T21:06:00Z</lastmod>
+  <lastmod>2020-04-11T16:57:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/</loc>
+  <lastmod>2020-04-11T16:57:00Z</lastmod>
  </url>
 </urlset>
