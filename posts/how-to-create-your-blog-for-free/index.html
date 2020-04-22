@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to create your blog for free | chronicles of a sysadmin</title>
+<title>How to create your blog for free | /bin/ary</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta name="theme-color" content="#5670d4">
@@ -11,7 +11,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Ary Kleinerman">
-<meta property="og:site_name" content="chronicles of a sysadmin">
+<meta property="og:site_name" content="/bin/ary">
 <meta property="og:title" content="How to create your blog for free">
 <meta property="og:url" content="https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/">
 <meta property="og:description" content="In this post I will explain how to set up for free your personal blog (or website) using
@@ -38,7 +38,7 @@ There are many site">
           <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
             <a class="navbar-brand blog-header-logo text-dark" href="https://ary.kleinerman.org/">
 
-            <span id="blog-title">chronicles of a sysadmin</span>
+            <span id="blog-title">/bin/ary</span>
         </a>
           </div>
             <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
@@ -112,35 +112,35 @@ will be available at <code class="docutils literal"><span class="pre">http(s)://
 <strong>GitHub Pages</strong>, I recommend this <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages">link</a>.</p>
 <p>Once the respository is created, clone it in your computer to start working with
 <strong>Nikola</strong>:</p>
-<pre class="code bash"><a name="rest_code_cafa6a1db53e4b2faacad090ab63e5f3-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
+<pre class="code bash"><a name="rest_code_1a086b47e8f1432f9f7f361454be1a9b-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
 </pre>
 </div>
 <div class="section" id="installing-nikola">
 <h2>Installing Nikola</h2>
 <p>The best way to install Nikola is using <code class="docutils literal">pip3</code> in a virtual environment, so I recommend
 to create a simple <code class="docutils literal">Makefile</code> in the local repository to manage your Nikola environment:</p>
-<pre class="code bash"><a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-2"></a>
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-4"></a>
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-5"></a>install: env
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-7"></a>
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-8"></a>env: clean
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-9"></a>      python3 -m venv .env
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-11"></a>
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-12"></a>clean:
-<a name="rest_code_4f7f48b3806941fc8abbc0527d8aa957-13"></a>      rm -rf .env
+<pre class="code bash"><a name="rest_code_ace06152bd604062827c2a67551d89c6-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-2"></a>
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-4"></a>
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-5"></a>install: env
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-7"></a>
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-8"></a>env: clean
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-9"></a>      python3 -m venv .env
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-11"></a>
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-12"></a>clean:
+<a name="rest_code_ace06152bd604062827c2a67551d89c6-13"></a>      rm -rf .env
 </pre>
 <p>Don't commit any changes yet. That will be handled by <strong>Nikola</strong> later. Now is time to
 install <strong>Nikola</strong> using the <code class="docutils literal">Makefile</code>:</p>
-<pre class="code bash"><a name="rest_code_78dac68c1021435a951f73cce651749c-1"></a>$ make install
+<pre class="code bash"><a name="rest_code_8b3bf4c2718f4fa793fd7fa21bc2d7ed-1"></a>$ make install
 </pre>
 <p>At this step you have <strong>Nikola</strong> installed in a virtual environment, so you need to
 activate it to start using Nikola.</p>
-<pre class="code bash"><a name="rest_code_e5d5f95373274eefa3a129265824e111-1"></a>$ <span class="nb">source</span> .env/bin/activate
-<a name="rest_code_e5d5f95373274eefa3a129265824e111-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
+<pre class="code bash"><a name="rest_code_72c3cbe4e8784acd81c0969feea8fb1f-1"></a>$ <span class="nb">source</span> .env/bin/activate
+<a name="rest_code_72c3cbe4e8784acd81c0969feea8fb1f-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
 </pre>
 <p>When you finish working with Nikola, you can deactivate the virtual environment with
 <code class="docutils literal">deactivate</code> and if you want to remove it, just run <code class="docutils literal">make clean</code>.</p>
@@ -170,11 +170,11 @@ site to GitHub Pages. By default, this command is configured but you can change 
 parameters in <code class="docutils literal">conf.py</code>. For more details, read the <a class="reference external" href="https://getnikola.com/handbook.html#deploying-to-github">manual</a></p>
 <p>Before running this command, create a <code class="docutils literal">.gitignore</code> file that tells Git which files and
 directories to ignore when you make a commit:</p>
-<pre class="code text"><a name="rest_code_4b57290b3b104a9780b4f38b2ffabe05-1"></a>cache
-<a name="rest_code_4b57290b3b104a9780b4f38b2ffabe05-2"></a>.doit.db
-<a name="rest_code_4b57290b3b104a9780b4f38b2ffabe05-3"></a>__pycache__
-<a name="rest_code_4b57290b3b104a9780b4f38b2ffabe05-4"></a>output
-<a name="rest_code_4b57290b3b104a9780b4f38b2ffabe05-5"></a>.env
+<pre class="code text"><a name="rest_code_0d5a0f46b69744b19027e1eca73e70d0-1"></a>cache
+<a name="rest_code_0d5a0f46b69744b19027e1eca73e70d0-2"></a>.doit.db
+<a name="rest_code_0d5a0f46b69744b19027e1eca73e70d0-3"></a>__pycache__
+<a name="rest_code_0d5a0f46b69744b19027e1eca73e70d0-4"></a>output
+<a name="rest_code_0d5a0f46b69744b19027e1eca73e70d0-5"></a>.env
 </pre>
 <p>At this point, you can deploy your site to <strong>Github Pages</strong> running <code class="docutils literal">nikola
 github_deploy</code>. This command will build the site, commit the <code class="docutils literal">output</code> directory to the
@@ -191,11 +191,11 @@ specify a different branch. If you don't know how to do it, follow <a class="ref
 <p>To configure your custom domain, like <code class="docutils literal">blog.example.org</code>, you need to create a <code class="docutils literal">CNAME</code>
 record (in your DNS provider) that points to <code class="docutils literal"><span class="pre">&lt;username&gt;.github.io</span></code>.</p>
 <p>After adding this change, you can check the new DNS record executing:</p>
-<pre class="code bash"><a name="rest_code_7ebcbec5d34e41c0b7bd29647459f0b6-1"></a>$ dig +nostats +nocomments blog.example.org
+<pre class="code bash"><a name="rest_code_6dcbeb22f38142ee939856375774d119-1"></a>$ dig +nostats +nocomments blog.example.org
 </pre>
 <p>Once the change has been applied, you must create a file <code class="docutils literal">files/CNAME</code> on the source
 branch with your domain. Following the example:</p>
-<pre class="code bash"><a name="rest_code_e328469a388f46dbb07c1a215e42a3f4-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
+<pre class="code bash"><a name="rest_code_c899e9594cd9410f923641f21e13531f-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
 </pre>
 <p>When you deploy the site using <code class="docutils literal">github_deploy</code>, Nikola will copy this <code class="docutils literal">CNAME</code> file to
 the output directory, commit to the master branch and push it to Github.</p>
@@ -234,7 +234,7 @@ pull request</a>. The code of this article is available on Github.</small></p>
 
 
         </section></article><script>var disqus_shortname="ary-kleinerman-org";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2020         <a href="mailto:kleinerman@gmail.com">Ary Kleinerman</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        
+            Contents © 2020         <a>Ary Kleinerman</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
             
