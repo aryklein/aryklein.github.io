@@ -17,15 +17,15 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Ary Kleinerman"  # (translatable)
-BLOG_TITLE = "chronicles of a sysadmin"  # (translatable)
+BLOG_TITLE = "/bin/ary"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://ary.kleinerman.org/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://ary.kleinerman.org/"
-BLOG_EMAIL = "kleinerman@gmail.com"
-BLOG_DESCRIPTION = "This is my personal geek weblog"  # (translatable)
+BLOG_EMAIL = ""
+BLOG_DESCRIPTION = "Ary's geek blog"  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -934,7 +934,8 @@ src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>"""
 
 # A small copyright notice for the page footer (in HTML).
 # (translatable)
-CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        {license}'
+#CONTENT_FOOTER = 'Contents &copy; {date}         <a href="mailto:{email}">{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        {license}'
+CONTENT_FOOTER = 'Contents &copy; {date}         <a>{author}</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        {license}'
 
 # Things that will be passed to CONTENT_FOOTER.format().  This is done
 # for translatability, as dicts are not formattable.  Nikola will
