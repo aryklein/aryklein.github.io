@@ -17,7 +17,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Ary Kleinerman"  # (translatable)
-BLOG_TITLE = "/bin/ary"  # (translatable)
+BLOG_TITLE = "Ary Kleinerman"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://ary.kleinerman.org/"
@@ -25,7 +25,7 @@ SITE_URL = "https://ary.kleinerman.org/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://ary.kleinerman.org/"
 BLOG_EMAIL = ""
-BLOG_DESCRIPTION = "Ary's geek blog"  # (translatable)
+BLOG_DESCRIPTION = "My personal geek blog"  # (translatable)
 
 # Nikola is multilingual!
 #
