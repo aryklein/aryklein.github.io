@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: 'src'
           persist-credentials: true
           fetch-depth: 0
 
