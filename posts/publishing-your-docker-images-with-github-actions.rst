@@ -270,9 +270,13 @@ it will execute the following tasks:
 4. Push the tagged image to Docker Hub.
 
 Secrets
--------
+~~~~~~~
 As you can see, I used ``secrets``. **Secrets** are encrypted environment variables that you create in your repository
 and are only exposed to Github Actions. If you need to use secrets, you can set them from the repository *Settings*.
+
+.. raw:: html
+
+   <br>
 
 Conclusions
 -----------
