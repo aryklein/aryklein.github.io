@@ -7,38 +7,40 @@
 .. description: 
 .. type: text
 
-Last weekend I was playing around with Github Actions and it blew my mind! Basically it's another CI tool, like 
+Last weekend I was playing around with **Github Actions** and it blew my mind! Basically it's another CI tool, like 
 `CircleCI <https://circleci.com>`_, `Travis <https://travis-ci.org/>`_, or
 `Gitlab CI/CD <https://docs.gitlab.com/ee/ci/>`_ but it is from Github.
 
-I found three things that attracted me:
+I found four things that attracted me:
 
-- It's free for public repositories or 2000 minutes free for private repositories.
+- It is free for public repositories or 2000 minutes free for private repositories.
 - It is easy to use (it uses YAML syntax).
+- There is a good official documentation.
 - The CI tool and your code live in the same place.
 
-Having seen these benefits, I decided to learn a little about **Github Actions** and share an example here. In this
-post I will show you how to build, test and publish your Docker images using this tool.
+Having seen these benefits, I decided to learn a little about it and share my experience. In this post I will show
+you how I use Github Actions to build, test and publish my Docker images.
+
+.. TEASER_END
 
 Instroduction
 -------------
-Github calls ``Workflows`` to custom automated processes that you can set up in your repository to build, test,
-package, release, or deploy any project on GitHub. These Workflows, defined in yaml syntax, need to be stored in the
+Github calls ``Workflows`` to custom automated processes that you can configure in your Github repository to build,
+test, package, release, or deploy any project. These workflows, written in yaml, need to be stored in the
 ``.github/workflows`` directory in the root of your repository. You can create more than one workflow in a repository.
 Workflows must have at least one ``job``, and jobs contain a set of ``steps`` that perform individual tasks. ``Steps``
 can run commands or use an action. We will see later what an ``action`` is.
 
-.. TEASER_END
-
 Setting up your workflow
 ------------------------
 To start using Github Actions, you need to create the ``.github/workflows`` directory in the root of your repository, 
-and then create a ``yaml`` file with the workflow definition. The file name doesn't matter, so feel free to use any
-file name, but it must have ``.yaml`` or ``.yml`` extension:
+and then create a ``yaml`` file with the workflow definition. The file name doesn't matter, so you can use any file
+name, but it must be ``.yaml`` or ``.yml``. In this case my workflow will build, test and publish docker images, so my
+yaml file looks like this:
 
 .. code-block:: yaml
 
-  name: Publish Docker
+  name: Publish Docker Image
 
   on:
     push:
@@ -116,7 +118,7 @@ file name, but it must have ``.yaml`` or ``.yml`` extension:
             docker push $IMAGE_ID:$VERSION
 
 
-Let's break down this file a little bit to explain every line:
+Let's break down this file a little bit to explain every step:
 
 name
 ~~~~
@@ -143,18 +145,18 @@ Determines when this workflow will run:
       branches:
         - master
 
-In this example GitHub will run this workflow when you push changes to your ``master`` branch, when you push a new tag
+In this case **GitHub** will run this workflow when you push changes to your ``master`` branch, when you push a new tag
 starting with ``v`` (for example tag ``v1.2.3``), or when you create a ``pull request`` to the ``master`` branch.
 You can find more information `here <https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on>`_
 
 env
 ~~~
-This key defines global environment variables. In this example we used it for the Docker image name: ``hello-world``
+This key defines global environment variables. I used it for the Docker image name ``hello-world``.
 
 jobs
 ~~~~
-A workflow run is made up of one or more ``jobs``. Jobs run in parallel by default. To run jobs sequentially,
-you can define dependencies on other jobs using the ``needs`` key with the job id value.
+A workflow is made up of one or more ``jobs``. Jobs run in parallel by default. To run jobs sequentially, you can
+define dependencies on other jobs using the ``needs`` key with the job name value.
 
 .. code-block:: yaml
    
@@ -171,36 +173,48 @@ you can define dependencies on other jobs using the ``needs`` key with the job i
       if: github.event_name == 'push'
 
 
-In this Workflow, we defined two jobs: ``test`` and ``push``. ``test`` will be used to perform tests on the built
-image, and ``push`` will be used to push the image to Docker Hub. ``push`` depends on ``test`` and will continue its
-execution only if the job ``test`` successfully passed. While ``test`` will be always executed, ``push`` will only
-happen if the event was a ``git push``. Both jobs will be executed in a virtual **Ubuntu** environment. 
+In this Workflow, I defined two jobs: ``test`` and ``push``. The job ``test`` will be used to perform tests on the
+built image, and ``push`` will be used to push the image to Docker Hub. ``push`` depends on ``test`` and will continue
+its execution only if the job ``test`` successfully passed. While ``test`` will be always executed, ``push`` will only
+be executed if the event was ``git push``. Both jobs will run in a virtual **Ubuntu** environment.
 
 steps
 ~~~~~
 A job is made of small sub-tasks called ``steps``. Each step is responsible to perform a task that performs some
-operation. Steps can run commands, run setup tasks, or run an **action**.
+operation. Steps can run commands, setup tasks, or run an **action**.
 
 **Actions** are individual tasks that you can use to create jobs and customize your workflow. **Actions** are code, so
-you can edit, reuse, share, and fork them like code. You can create your own actions, or use actions shared by the
+you can edit, reuse, share, and fork them like code. You can create your own actions or use actions shared by the
 `GitHub community <https://github.com/marketplace?type=actions>`_
 
 .. code-block:: yaml
 
-   steps:
-     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-     - name: Run tests
-       run: |
-         if [ -f docker-compose.test.yml ]; then
-           docker-compose --file docker-compose.test.yml build
-           docker-compose --file docker-compose.test.yml run sut
-         else
-           docker build . --file Dockerfile
-         fi
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
+          else
+            docker build . --file Dockerfile
+          fi
 
-In the job ``test``, we will use an **action** that checks-out the repository under ``$GITHUB_WORKSPACE``, and then
-execute a system unit test service (sut) if it exist. See also https://docs.docker.com/docker-hub/builds/automated-testing/
+In the job ``test``, I use an **action** that checks-out the repository under ``$GITHUB_WORKSPACE``, and then execute a
+system unit test service (``sut``) if it is defined. See also https://docs.docker.com/docker-hub/builds/automated-testing/
+
+You can create a ``docker-compose.test.yml`` file which defines a ``sut`` service that lists the tests to be run.
+
+.. code-block:: bash
+
+    version: '3.3'
+    services:
+      sut:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        command: run_test.sh
 
 Finally if ``test`` successfully passed and the Github event was a push, Github will execute the job ``push``:
 
@@ -262,4 +276,14 @@ and are only exposed to Github Actions. If you need to use secrets, you can set 
 
 Conclusions
 -----------
-I found Github Actions very easy to learn and use. I haven't  other tools like I mentioned before, but I like
+I found Github Actions very powerful and easy to set up a CI/CD workflow for your application or whatever you may be
+building. I think its syntax and official documetation helps to make it a very friendly tool. There are many other
+tools like **Travis** and **CircleCI** that are very similar, but in my case I found interesting that this tool and the
+code live in the same platform.
+
+.. raw:: html
+
+  <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
+  href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/publishing-your-docker-images-with-github-actions.rst">
+  pull request</a>. The code of this article is available on Github.</small></p>
+
