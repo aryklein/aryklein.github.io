@@ -23,8 +23,8 @@ you how I use Github Actions to build, test and publish my Docker images.
 
 .. TEASER_END
 
-Instroduction
--------------
+Introduction
+------------
 Github calls ``Workflows`` to custom automated processes that you can configure in your Github repository to build,
 test, package, release, or deploy any project. These workflows, written in yaml, need to be stored in the
 ``.github/workflows`` directory in the root of your repository. You can create more than one workflow in a repository.
@@ -271,19 +271,47 @@ it will execute the following tasks:
 
 Secrets
 ~~~~~~~
-As you can see, I used ``secrets``. **Secrets** are encrypted environment variables that you create in your repository
-and are only exposed to Github Actions. If you need to use secrets, you can set them from the repository *Settings*.
+In this workflow, I've used ``secrets``. Secrets are encrypted environment variables that live in the context named
+``secrets`` and are only exposed to Github Actions. Secrets are very useful for sensitive variables like passwords. You
+can add them in the repository **Settings**:
+
+.. image:: /images/github-actions-secrets.png
 
 .. raw:: html
 
    <br>
+   <br>
+
+Once you have configured your secrets, you can use them from the context named ``secrets``:
+
+.. code-block:: bash
+   
+    ${{ secrets.<name> }}
+
+.. raw:: html
+
+    <br>
+
+Workflows logs
+--------------
+Once you have pushed a workflow in your repository, when one of the GitHub events (defined in the yaml file) triggers
+the workflow, you can see the pipeline logs in the **Actions** tab.
+
+.. raw:: html
+
+    <br><hr>
 
 Conclusions
 -----------
-I found Github Actions very powerful and easy to set up a CI/CD workflow for your application or whatever you may be
-building. I think its syntax and official documetation helps to make it a very friendly tool. There are many other
-tools like **Travis** and **CircleCI** that are very similar, but in my case I found interesting that this tool and the
-code live in the same platform.
+I found **Github Actions** very powerful and easy to configure a CI/CD workflow for your application or whatever you
+may want to build. It requires minimal configuration and its syntax and official documetation helps to make it a very
+friendly tool. There are many other tools that are very similar, but what I like is that the code and the tool live in
+the same place, so you don't have to signing up to other vendors like Travis or CircleCI.
+
+If you want to see some examples, check these respositories:
+
+- https://github.com/aryklein/flask-hello
+- https://github.com/aryklein/pg-health-check
 
 .. raw:: html
 
