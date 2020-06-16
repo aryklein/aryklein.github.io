@@ -116,35 +116,35 @@ will be available at <code class="docutils literal"><span class="pre">http(s)://
 <strong>GitHub Pages</strong>, I recommend this <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages">link</a>.</p>
 <p>Once the respository is created, clone it in your computer to start working with
 <strong>Nikola</strong>:</p>
-<pre class="code bash"><a name="rest_code_e57b7d9e1be34e9b83724ba8ec9fc957-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
+<pre class="code bash"><a name="rest_code_f53243655dd54addacd27faa483fa087-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
 </pre>
 </div>
 <div class="section" id="installing-nikola">
 <h2>Installing Nikola</h2>
 <p>The best way to install Nikola is using <code class="docutils literal">pip3</code> in a virtual environment, so I recommend
 to create a simple <code class="docutils literal">Makefile</code> in the local repository to manage your Nikola environment:</p>
-<pre class="code bash"><a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-2"></a>
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-4"></a>
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-5"></a>install: env
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-7"></a>
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-8"></a>env: clean
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-9"></a>      python3 -m venv .env
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-11"></a>
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-12"></a>clean:
-<a name="rest_code_ec5c90bd9d16446d8a1edc85d2409653-13"></a>      rm -rf .env
+<pre class="code bash"><a name="rest_code_e13442df4ee54272afc93cf2160715f3-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-2"></a>
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-4"></a>
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-5"></a>install: env
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-7"></a>
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-8"></a>env: clean
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-9"></a>      python3 -m venv .env
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-11"></a>
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-12"></a>clean:
+<a name="rest_code_e13442df4ee54272afc93cf2160715f3-13"></a>      rm -rf .env
 </pre>
 <p>Don't commit any changes yet. That will be handled by <strong>Nikola</strong> later. Now is time to
 install <strong>Nikola</strong> using the <code class="docutils literal">Makefile</code>:</p>
-<pre class="code bash"><a name="rest_code_9c26e249c29a46ff8593833434e242c6-1"></a>$ make install
+<pre class="code bash"><a name="rest_code_138b6e1dd6924458bf4733354d900b4e-1"></a>$ make install
 </pre>
 <p>At this step you have <strong>Nikola</strong> installed in a virtual environment, so you need to
 activate it to start using Nikola.</p>
-<pre class="code bash"><a name="rest_code_e29aa3515b71482f944fbdb9b63226e9-1"></a>$ <span class="nb">source</span> .env/bin/activate
-<a name="rest_code_e29aa3515b71482f944fbdb9b63226e9-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
+<pre class="code bash"><a name="rest_code_bd4873fe53554b8b88821fd813856387-1"></a>$ <span class="nb">source</span> .env/bin/activate
+<a name="rest_code_bd4873fe53554b8b88821fd813856387-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
 </pre>
 <p>When you finish working with Nikola, you can deactivate the virtual environment with
 <code class="docutils literal">deactivate</code> and if you want to remove it, just run <code class="docutils literal">make clean</code>.</p>
@@ -174,11 +174,11 @@ site to GitHub Pages. By default, this command is configured but you can change 
 parameters in <code class="docutils literal">conf.py</code>. For more details, read the <a class="reference external" href="https://getnikola.com/handbook.html#deploying-to-github">manual</a></p>
 <p>Before running this command, create a <code class="docutils literal">.gitignore</code> file that tells Git which files and
 directories to ignore when you make a commit:</p>
-<pre class="code text"><a name="rest_code_c988746fabee4c63bc95a41b416d7bb9-1"></a>cache
-<a name="rest_code_c988746fabee4c63bc95a41b416d7bb9-2"></a>.doit.db
-<a name="rest_code_c988746fabee4c63bc95a41b416d7bb9-3"></a>__pycache__
-<a name="rest_code_c988746fabee4c63bc95a41b416d7bb9-4"></a>output
-<a name="rest_code_c988746fabee4c63bc95a41b416d7bb9-5"></a>.env
+<pre class="code text"><a name="rest_code_76d23abc96ca42f98bab6e8fbe0c6f70-1"></a>cache
+<a name="rest_code_76d23abc96ca42f98bab6e8fbe0c6f70-2"></a>.doit.db
+<a name="rest_code_76d23abc96ca42f98bab6e8fbe0c6f70-3"></a>__pycache__
+<a name="rest_code_76d23abc96ca42f98bab6e8fbe0c6f70-4"></a>output
+<a name="rest_code_76d23abc96ca42f98bab6e8fbe0c6f70-5"></a>.env
 </pre>
 <p>At this point, you can deploy your site to <strong>Github Pages</strong> running <code class="docutils literal">nikola
 github_deploy</code>. This command will build the site, commit the <code class="docutils literal">output</code> directory to the
@@ -195,11 +195,11 @@ specify a different branch. If you don't know how to do it, follow <a class="ref
 <p>To configure your custom domain, like <code class="docutils literal">blog.example.org</code>, you need to create a <code class="docutils literal">CNAME</code>
 record (in your DNS provider) that points to <code class="docutils literal"><span class="pre">&lt;username&gt;.github.io</span></code>.</p>
 <p>After adding this change, you can check the new DNS record executing:</p>
-<pre class="code bash"><a name="rest_code_1e14cd9bd5a94d7e95a63d5523aa37c1-1"></a>$ dig +nostats +nocomments blog.example.org
+<pre class="code bash"><a name="rest_code_f7dfa5abf90243249571b6eb7222661f-1"></a>$ dig +nostats +nocomments blog.example.org
 </pre>
 <p>Once the change has been applied, you must create a file <code class="docutils literal">files/CNAME</code> on the source
 branch with your domain. Following the example:</p>
-<pre class="code bash"><a name="rest_code_570d09cfe4c74aadbf5fa6cefc44e7b9-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
+<pre class="code bash"><a name="rest_code_e62e9c73a0a542cab26395e177579608-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
 </pre>
 <p>When you deploy the site using <code class="docutils literal">github_deploy</code>, Nikola will copy this <code class="docutils literal">CNAME</code> file to
 the output directory, commit to the master branch and push it to Github.</p>
