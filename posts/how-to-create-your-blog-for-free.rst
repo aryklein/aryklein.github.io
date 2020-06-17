@@ -1,7 +1,7 @@
 .. title: How to create your blog for free
 .. slug: how-to-create-your-blog-for-free
 .. date: 2020-04-04 20:23:21 UTC-03:00
-.. tags: 
+.. tags: Nikola, Github Actions, Github Pages
 .. category: 
 .. link: 
 .. description: 
@@ -26,7 +26,6 @@ provides a command to deploy the static site there.
 
 Creating a repository for your site
 -----------------------------------
-
 To publish your site using **Github Pages**, you need to create an empty repository in
 Github (``README.md`` is not needed) and it must be named ``<username>.github.io``, where
 ``username`` is your username on Github. Unless you're using a custom domain, your site
@@ -44,7 +43,6 @@ Once the respository is created, clone it in your computer to start working with
 
 Installing Nikola
 -----------------
-
 The best way to install Nikola is using ``pip3`` in a virtual environment, so I recommend
 to create a simple ``Makefile`` in the local repository to manage your Nikola environment:
 
@@ -85,7 +83,6 @@ When you finish working with Nikola, you can deactivate the virtual environment 
 
 Creating your site
 ------------------
-
 I will only cover how to initialize your site, create a simple ``Hello World`` post and
 deploy it to **Github Pages**. I strongly recommend that you read the official `handbook
 <https://getnikola.com/handbook.html>`_ for more details about Nikola's commands and how
@@ -111,7 +108,6 @@ in a web browser.
 
 Deploying your site to Github Pages
 -----------------------------------
-
 As I mentioned before, Nikola provides a command ``nikola github_deploy`` to deploy the
 site to GitHub Pages. By default, this command is configured but you can change some
 parameters in ``conf.py``. For more details, read the `manual
@@ -140,9 +136,57 @@ specify a different branch. If you don't know how to do it, follow `this guide
 <https://help.github.com/en/github/administering-a-repository/setting-the-default-branch>`_
 .
 
+Deploying your site using Github Actions
+----------------------------------------
+Once you have deployed your site manually with ``nikola github_deploy`` (previous step),
+you can create a **Github Action Workflow** that automatically deploys your site every
+time you push a change in the ``src`` branch.
+
+Create the ``.github/workflows`` directory in the root of the ``src`` branch, and then
+add the following workflow ``.github/workflows/main.yml``:
+
+.. code-block:: yaml
+
+  name: Nikola Publish
+
+  on:
+    push:
+      branches:
+        - src
+  jobs:
+    publish:
+      runs-on: ubuntu-latest
+      if: github.event_name == 'push'
+  
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            ref: 'src'
+            persist-credentials: true
+            fetch-depth: 0
+  
+        - name: Set up Python 3.8
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.8
+  
+        - name: Install Nikola
+          run: |
+            pip install --upgrade pip setuptools wheel
+            pip install --upgrade -r requirements.txt
+        - name: Build and deploy Nikola
+          run: |
+            git config --global user.email "${{ secrets.USER_EMAIL }}"
+            git config --global user.name "Ary Kleinerman"
+            nikola build
+            nikola github_deploy -m "Published with Github Actions"
+
+Github will execute this workflow every time you push a code change in the ``src`` branch.
+This workflow checks-out the repository in an Ubuntu environment, sets up a Python 3.8
+environment, installs Nikola and executes ``nikola github_deploy``.
+
 Custom domain
 -------------
-
 To configure your custom domain, like ``blog.example.org``, you need to create a ``CNAME``
 record (in your DNS provider) that points to ``<username>.github.io``.
 
@@ -167,7 +211,6 @@ the output directory, commit to the master branch and push it to Github.
 
 Enforcing HTTPS
 ---------------
-
 Optionally, you can enforce HTTPS encryption for your site. To enable this option, in the
 Github website, go to your repository ``<username>.github.io``, *Settings* and check
 *Enforce HTTPS*. When HTTPS is enforced, your site will only be servedcover HTTPS.
