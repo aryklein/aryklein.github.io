@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>/bin/ary (Posts about Github Pages)</title><link>https://ary.kleinerman.org/</link><description></description><atom:link href="https://ary.kleinerman.org/categories/github-pages.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:"&gt;Ary Kleinerman&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 17 Jun 2020 04:40:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How to create your blog for free</title><link>https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/</link><dc:creator>Ary Kleinerman</dc:creator><description>&lt;div&gt;&lt;p&gt;In this post I will explain how to set up for free your personal blog (or website) using
+a static site generator and &lt;strong&gt;Github Pages&lt;/strong&gt;. In fact, this is how I'm running this cool
+blog 😉&lt;/p&gt;
+&lt;p&gt;There are many site generators available on the Internet, like &lt;a class="reference external" href="https://blog.getpelican.com"&gt;Pelican&lt;/a&gt;, &lt;a class="reference external" href="http://octopress.org"&gt;Octopress&lt;/a&gt;, &lt;a class="reference external" href="https://jekyllrb.com"&gt;Jekyll&lt;/a&gt;, &lt;a class="reference external" href="https://gohugo.io"&gt;Hugo&lt;/a&gt;, etc. Anyway &lt;a class="reference external" href="https://getnikola.com"&gt;Nikola&lt;/a&gt; is the one that convinced me the most. It looks nice, has a
+friendly command line interface, supports multiple input formats (reStructuredText is my
+favorite one), and it's written in Python ❤&lt;/p&gt;
+&lt;p&gt;When looking for hosting there are many alternatives as well, but I decided to use &lt;a class="reference external" href="https://pages.github.com"&gt;Github
+Pages&lt;/a&gt; because it's free, easy to use and &lt;strong&gt;Nikola&lt;/strong&gt;
+provides a command to deploy the static site there.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>Github Actions</category><category>Github Pages</category><category>Nikola</category><guid>https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/</guid><pubDate>Sat, 04 Apr 2020 23:23:21 GMT</pubDate></item></channel></rss>
