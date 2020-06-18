@@ -1212,17 +1212,7 @@ SHOW_SOURCELINK = False
 # Google Analytics or whatever else you use. Added to the bottom of <body>
 # in the default template (base.tmpl).
 # (translatable)
-BODY_END = """
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169928178-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-169928178-1');
-</script>
-"""
+#BODY_END = ""
 
 # The possibility to extract metadata from the filename by using a
 # regular expression.
