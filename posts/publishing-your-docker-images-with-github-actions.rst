@@ -11,11 +11,11 @@ Last weekend I was playing around with **Github Actions** and it blew my mind! B
 `CircleCI <https://circleci.com>`_, `Travis <https://travis-ci.org/>`_, or
 `Gitlab CI/CD <https://docs.gitlab.com/ee/ci/>`_ but it is from Github.
 
-I found four things that attracted me:
+The four main things that attracted me were:
 
 - It is free for public repositories or 2000 minutes free for private repositories.
 - It is easy to use (it uses YAML syntax).
-- There is a good official documentation.
+- There is good official documentation.
 - The CI tool and your code live in the same place.
 
 Having seen these benefits, I decided to learn a little about it and share my experience. In this post I will show
@@ -26,16 +26,16 @@ you how I use Github Actions to build, test and publish my Docker images.
 Introduction
 ------------
 Github calls ``Workflows`` to custom automated processes that you can configure in your Github repository to build,
-test, package, release, or deploy any project. These workflows, written in yaml, need to be stored in the
-``.github/workflows`` directory in the root of your repository. You can create more than one workflow in a repository.
+test, package, release, or deploy any project. These Workflows, written in yaml, need to be stored in the
+``.github/workflows`` directory in the root of your repository. You can create more than one Workflow in a repository.
 Workflows must have at least one ``job``, and jobs contain a set of ``steps`` that perform individual tasks. ``Steps``
-can run commands or use an action. We will see later what an ``action`` is.
+can run commands or use an action. Later we'll see what an ``action`` is.
 
-Setting up your workflow
+Setting up your Workflow
 ------------------------
 To start using Github Actions, you need to create the ``.github/workflows`` directory in the root of your repository, 
-and then create a ``yaml`` file with the workflow definition. The file name doesn't matter, so you can use any file
-name, but it must be ``.yaml`` or ``.yml``. In this case my workflow will build, test and publish docker images, so my
+and then create a ``yaml`` file with the Workflow definition. The file name doesn't matter, so you can use any file
+name, but it must be ``.yaml`` or ``.yml``. In this case my Workflow will build, test, and publish docker images, so my
 yaml file looks like this:
 
 .. code-block:: yaml
@@ -122,11 +122,11 @@ Let's break down this file a little bit to explain every step:
 
 name
 ~~~~
-This key defines the name of the workflow. You can use whaterver name you prefer the most.
+This key defines the name of the Workflow. You can use whaterver name you prefer.
 
 on
 ~~
-Determines when this workflow will run:
+Determines when this Workflow will run:
 
 .. code-block:: yaml
 
@@ -145,7 +145,7 @@ Determines when this workflow will run:
       branches:
         - master
 
-In this case **GitHub** will run this workflow when you push changes to your ``master`` branch, when you push a new tag
+In this case **GitHub** will run this Workflow when you push changes to your ``master`` branch, when you push a new tag
 starting with ``v`` (for example tag ``v1.2.3``), or when you create a ``pull request`` to the ``master`` branch.
 You can find more information `here <https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on>`_
 
@@ -155,7 +155,7 @@ This key defines global environment variables. I used it for the Docker image na
 
 jobs
 ~~~~
-A workflow is made up of one or more ``jobs``. Jobs run in parallel by default. To run jobs sequentially, you can
+A Workflow is made up of one or more ``jobs``. Jobs run parallel by default. To run jobs sequentially, you can
 define dependencies on other jobs using the ``needs`` key with the job name value.
 
 .. code-block:: yaml
@@ -180,10 +180,9 @@ be executed if the event was ``git push``. Both jobs will run in a virtual **Ubu
 
 steps
 ~~~~~
-A job is made of small sub-tasks called ``steps``. Each step is responsible to perform a task that performs some
-operation. Steps can run commands, setup tasks, or run an **action**.
+A job is made of small sub-tasks called ``steps`` and they can run commands, setup tasks, or run an **action**.
 
-**Actions** are individual tasks that you can use to create jobs and customize your workflow. **Actions** are code, so
+**Actions** are individual tasks that you can use to create jobs and customize your Workflow. **Actions** are code, so
 you can edit, reuse, share, and fork them like code. You can create your own actions or use actions shared by the
 `GitHub community <https://github.com/marketplace?type=actions>`_
 
@@ -201,8 +200,8 @@ you can edit, reuse, share, and fork them like code. You can create your own act
             docker build . --file Dockerfile
           fi
 
-In the job ``test``, I use an **action** that checks-out the repository under ``$GITHUB_WORKSPACE``, and then execute a
-system unit test service (``sut``) if it is defined. See also https://docs.docker.com/docker-hub/builds/automated-testing/
+In the job ``test``, I use an **action** that checks-out the repository under ``$GITHUB_WORKSPACE``, and then it executes a
+system unit test service (``sut``) if it's defined. See also https://docs.docker.com/docker-hub/builds/automated-testing/
 
 You can create a ``docker-compose.test.yml`` file which defines a ``sut`` service that lists the tests to be run.
 
@@ -261,7 +260,7 @@ Finally if ``test`` successfully passed and the Github event was a push, Github 
             docker push $IMAGE_ID:$VERSION
 
 
-Here we will checks-out again the repository under ``$GITHUB_WORKSPACE`` in a different Ubuntu environment  and then 
+Here we'll checks-out again the repository under ``$GITHUB_WORKSPACE`` in a different Ubuntu environment and then 
 it will execute the following tasks:
 
 1. Build the Docker image using ``docker build`` commmand.
@@ -271,7 +270,7 @@ it will execute the following tasks:
 
 Secrets
 ~~~~~~~
-In this workflow, I've used ``secrets``. Secrets are encrypted environment variables that live in the context named
+In this Workflow, I've used ``secrets``. Secrets are encrypted environment variables that live in the context named
 ``secrets`` and are only exposed to Github Actions. Secrets are very useful for sensitive variables like passwords. You
 can add them in the repository **Settings**:
 
@@ -294,8 +293,8 @@ Once you have configured your secrets, you can use them from the context named `
 
 Workflows logs
 --------------
-Once you have pushed a workflow in your repository, when one of the GitHub events (defined in the yaml file) triggers
-the workflow, you can see the pipeline logs in the **Actions** tab.
+Once you have pushed a Workflow in your repository, when one of the GitHub events (defined in the yaml file) triggers
+the Workflow, you can see the pipeline logs in the **Actions** tab.
 
 .. raw:: html
 
@@ -303,12 +302,12 @@ the workflow, you can see the pipeline logs in the **Actions** tab.
 
 Conclusions
 -----------
-I found **Github Actions** very powerful and easy to configure a CI/CD workflow for your application or whatever you
+I found **Github Actions** very powerful and easy to configure a CI/CD pipeline for your application or whatever you
 may want to build. It requires minimal configuration and its syntax and official documetation helps to make it a very
-friendly tool. There are many other tools that are very similar, but what I like is that the code and the tool live in
-the same place, so you don't have to signing up to other vendors like Travis or CircleCI.
+friendly tool. There are many other tools that are very similar, but what I like about it is that the code and the tool
+live in the same place, so you don't have to sign up to other vendors like Travis or CircleCI.
 
-If you want to see some examples, check these respositories:
+If you want to see some examples, check out these respositories:
 
 - https://github.com/aryklein/flask-hello
 - https://github.com/aryklein/pg-health-check
@@ -318,4 +317,3 @@ If you want to see some examples, check these respositories:
   <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
   href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/publishing-your-docker-images-with-github-actions.rst">
   pull request</a>. The code of this article is available on Github.</small></p>
-
