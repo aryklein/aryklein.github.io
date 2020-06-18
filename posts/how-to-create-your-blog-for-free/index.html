@@ -119,35 +119,35 @@ will be available at <code class="docutils literal"><span class="pre">http(s)://
 <strong>GitHub Pages</strong>, I recommend this <a class="reference external" href="https://help.github.com/en/github/working-with-github-pages">link</a>.</p>
 <p>Once the respository is created, clone it in your computer to start working with
 <strong>Nikola</strong>:</p>
-<pre class="code bash"><a name="rest_code_cb0afc8a93554e71957dbbbabaa9d568-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
+<pre class="code bash"><a name="rest_code_8ad513e21df949cfb3333289313d73c6-1"></a>$ git clone https://github.com/username/&lt;username&gt;.github.io
 </pre>
 </div>
 <div class="section" id="installing-nikola">
 <h2>Installing Nikola</h2>
 <p>The best way to install Nikola is using <code class="docutils literal">pip3</code> in a virtual environment, so I recommend
 to create a simple <code class="docutils literal">Makefile</code> in the local repository to manage your Nikola environment:</p>
-<pre class="code bash"><a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-2"></a>
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-4"></a>
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-5"></a>install: env
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-7"></a>
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-8"></a>env: clean
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-9"></a>      python3 -m venv .env
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-11"></a>
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-12"></a>clean:
-<a name="rest_code_ff82787b6a8841fa8a5d88dc16d09b0a-13"></a>      rm -rf .env
+<pre class="code bash"><a name="rest_code_1670a059da95480e936950abd018bf3a-1"></a><span class="nv">SHELL</span><span class="o">=</span>bash
+<a name="rest_code_1670a059da95480e936950abd018bf3a-2"></a>
+<a name="rest_code_1670a059da95480e936950abd018bf3a-3"></a>.DEFAULT_GOAL :<span class="o">=</span> install
+<a name="rest_code_1670a059da95480e936950abd018bf3a-4"></a>
+<a name="rest_code_1670a059da95480e936950abd018bf3a-5"></a>install: env
+<a name="rest_code_1670a059da95480e936950abd018bf3a-6"></a>      .env/bin/pip install --upgrade <span class="s2">"Nikola[extras]"</span>
+<a name="rest_code_1670a059da95480e936950abd018bf3a-7"></a>
+<a name="rest_code_1670a059da95480e936950abd018bf3a-8"></a>env: clean
+<a name="rest_code_1670a059da95480e936950abd018bf3a-9"></a>      python3 -m venv .env
+<a name="rest_code_1670a059da95480e936950abd018bf3a-10"></a>      .env/bin/pip install --upgrade pip setuptools wheel
+<a name="rest_code_1670a059da95480e936950abd018bf3a-11"></a>
+<a name="rest_code_1670a059da95480e936950abd018bf3a-12"></a>clean:
+<a name="rest_code_1670a059da95480e936950abd018bf3a-13"></a>      rm -rf .env
 </pre>
 <p>Don't commit any changes yet. That will be handled by <strong>Nikola</strong> later. Now is time to
 install <strong>Nikola</strong> using the <code class="docutils literal">Makefile</code>:</p>
-<pre class="code bash"><a name="rest_code_25cd5f9296b34f47ac19dd7993cd8481-1"></a>$ make install
+<pre class="code bash"><a name="rest_code_c2ec48c07e37417fa55a2698444ec7fc-1"></a>$ make install
 </pre>
 <p>At this step you have <strong>Nikola</strong> installed in a virtual environment, so you need to
 activate it to start using Nikola.</p>
-<pre class="code bash"><a name="rest_code_6b29f7c22e9941b8bd880537d51190ac-1"></a>$ <span class="nb">source</span> .env/bin/activate
-<a name="rest_code_6b29f7c22e9941b8bd880537d51190ac-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
+<pre class="code bash"><a name="rest_code_4e64f5571a384d6a86a01152fdc24ae8-1"></a>$ <span class="nb">source</span> .env/bin/activate
+<a name="rest_code_4e64f5571a384d6a86a01152fdc24ae8-2"></a><span class="o">(</span>.env<span class="o">)</span>$ nikola --version
 </pre>
 <p>When you finish working with Nikola, you can deactivate the virtual environment with
 <code class="docutils literal">deactivate</code> and if you want to remove it, just run <code class="docutils literal">make clean</code>.</p>
@@ -177,11 +177,11 @@ site to GitHub Pages. By default, this command is configured but you can change 
 parameters in <code class="docutils literal">conf.py</code>. For more details, read the <a class="reference external" href="https://getnikola.com/handbook.html#deploying-to-github">manual</a></p>
 <p>Before running this command, create a <code class="docutils literal">.gitignore</code> file that tells Git which files and
 directories to ignore when you make a commit:</p>
-<pre class="code text"><a name="rest_code_999169a571bd45f796f8548d4d772c68-1"></a>cache
-<a name="rest_code_999169a571bd45f796f8548d4d772c68-2"></a>.doit.db
-<a name="rest_code_999169a571bd45f796f8548d4d772c68-3"></a>__pycache__
-<a name="rest_code_999169a571bd45f796f8548d4d772c68-4"></a>output
-<a name="rest_code_999169a571bd45f796f8548d4d772c68-5"></a>.env
+<pre class="code text"><a name="rest_code_c5d21db772a145ac9f67a0096b26c95a-1"></a>cache
+<a name="rest_code_c5d21db772a145ac9f67a0096b26c95a-2"></a>.doit.db
+<a name="rest_code_c5d21db772a145ac9f67a0096b26c95a-3"></a>__pycache__
+<a name="rest_code_c5d21db772a145ac9f67a0096b26c95a-4"></a>output
+<a name="rest_code_c5d21db772a145ac9f67a0096b26c95a-5"></a>.env
 </pre>
 <p>At this point, you can deploy your site to <strong>Github Pages</strong> running <code class="docutils literal">nikola
 github_deploy</code>. This command will build the site, commit the <code class="docutils literal">output</code> directory to the
@@ -200,39 +200,39 @@ you can create a <strong>Github Action Workflow</strong> that automatically depl
 time you push a change in the <code class="docutils literal">src</code> branch.</p>
 <p>Create the <code class="docutils literal">.github/workflows</code> directory in the root of the <code class="docutils literal">src</code> branch, and then
 add the following workflow <code class="docutils literal">.github/workflows/main.yml</code>:</p>
-<pre class="code yaml"><a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-1"></a><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Nikola Publish</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-2"></a>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-3"></a><span class="nt">on</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-4"></a>  <span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-5"></a>    <span class="nt">branches</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-6"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">src</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-7"></a><span class="nt">jobs</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-8"></a>  <span class="nt">publish</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-9"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-10"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-11"></a>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-12"></a>    <span class="nt">steps</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-13"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-14"></a>        <span class="nt">with</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-15"></a>          <span class="nt">ref</span><span class="p">:</span> <span class="s">'src'</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-16"></a>          <span class="nt">persist-credentials</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-17"></a>          <span class="nt">fetch-depth</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-18"></a>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-19"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up Python 3.8</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-20"></a>        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-21"></a>        <span class="nt">with</span><span class="p">:</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-22"></a>          <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.8</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-23"></a>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-24"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install Nikola</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-25"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-26"></a>          <span class="no">pip install --upgrade pip setuptools wheel</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-27"></a>          <span class="no">pip install --upgrade -r requirements.txt</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-28"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build and deploy Nikola</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-29"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-30"></a>          <span class="no">git config --global user.email "${{ secrets.USER_EMAIL }}"</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-31"></a>          <span class="no">git config --global user.name "Ary Kleinerman"</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-32"></a>          <span class="no">nikola build</span>
-<a name="rest_code_3ecc5e8698064cd988f10e037eaf5da2-33"></a>          <span class="no">nikola github_deploy -m "Published with Github Actions"</span>
+<pre class="code yaml"><a name="rest_code_804e139dae1443d2a9924bb86397f2e1-1"></a><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Nikola Publish</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-2"></a>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-3"></a><span class="nt">on</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-4"></a>  <span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-5"></a>    <span class="nt">branches</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-6"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">src</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-7"></a><span class="nt">jobs</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-8"></a>  <span class="nt">publish</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-9"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-10"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-11"></a>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-12"></a>    <span class="nt">steps</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-13"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-14"></a>        <span class="nt">with</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-15"></a>          <span class="nt">ref</span><span class="p">:</span> <span class="s">'src'</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-16"></a>          <span class="nt">persist-credentials</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-17"></a>          <span class="nt">fetch-depth</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-18"></a>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-19"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up Python 3.8</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-20"></a>        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-21"></a>        <span class="nt">with</span><span class="p">:</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-22"></a>          <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.8</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-23"></a>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-24"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install Nikola</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-25"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-26"></a>          <span class="no">pip install --upgrade pip setuptools wheel</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-27"></a>          <span class="no">pip install --upgrade -r requirements.txt</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-28"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build and deploy Nikola</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-29"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-30"></a>          <span class="no">git config --global user.email "${{ secrets.USER_EMAIL }}"</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-31"></a>          <span class="no">git config --global user.name "Ary Kleinerman"</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-32"></a>          <span class="no">nikola build</span>
+<a name="rest_code_804e139dae1443d2a9924bb86397f2e1-33"></a>          <span class="no">nikola github_deploy -m "Published with Github Actions"</span>
 </pre>
 <p>Github will execute this workflow every time you push a code change in the <code class="docutils literal">src</code> branch.
 This workflow checks-out the repository in an Ubuntu environment, sets up a Python 3.8
@@ -243,11 +243,11 @@ environment, installs Nikola and executes <code class="docutils literal">nikola 
 <p>To configure your custom domain, like <code class="docutils literal">blog.example.org</code>, you need to create a <code class="docutils literal">CNAME</code>
 record (in your DNS provider) that points to <code class="docutils literal"><span class="pre">&lt;username&gt;.github.io</span></code>.</p>
 <p>After adding this change, you can check the new DNS record executing:</p>
-<pre class="code bash"><a name="rest_code_3df2ae184f024857bc519e29e7985862-1"></a>$ dig +nostats +nocomments blog.example.org
+<pre class="code bash"><a name="rest_code_668f2f1c0d194e8b8b2e13770acb626a-1"></a>$ dig +nostats +nocomments blog.example.org
 </pre>
 <p>Once the change has been applied, you must create a file <code class="docutils literal">files/CNAME</code> on the source
 branch with your domain. Following the example:</p>
-<pre class="code bash"><a name="rest_code_0a71b1aa70174fb484357cfb556c1e19-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
+<pre class="code bash"><a name="rest_code_3d164bd9f8a24ed19c2ff88847b10396-1"></a>$ <span class="nb">echo</span> blog.example.org &gt; files/CNAME
 </pre>
 <p>When you deploy the site using <code class="docutils literal">github_deploy</code>, Nikola will copy this <code class="docutils literal">CNAME</code> file to
 the output directory, commit to the master branch and push it to Github.</p>
@@ -311,6 +311,12 @@ pull request</a>. The code of this article is available on Github.</small></p>
         captions: function(element) {
             return element.getElementsByTagName('img')[0].alt;
     }});
-    </script>
+    </script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-169928178-1"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169928178-1');
+</script>
 </body>
 </html>
