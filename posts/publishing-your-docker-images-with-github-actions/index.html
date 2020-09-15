@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
 <link rel="canonical" href="https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Ary Kleinerman">
 <link rel="prev" href="../how-to-create-your-blog-for-free/" title="How to create your blog for free" type="text/html">
@@ -40,7 +40,7 @@ The four main things that attra">
             </div>
         </div>
           <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
-            <a class="navbar-brand blog-header-logo text-dark" href="https://ary.kleinerman.org/">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../">
 
             <span id="blog-title">/bin/ary</span>
         </a>
@@ -127,82 +127,82 @@ can run commands or use an action. Later we'll see what an <code class="docutils
 and then create a <code class="docutils literal">yaml</code> file with the Workflow definition. The file name doesn't matter, so you can use any file
 name, but it must be <code class="docutils literal">.yaml</code> or <code class="docutils literal">.yml</code>. In this case my Workflow will build, test, and publish docker images, so my
 yaml file looks like this:</p>
-<pre class="code yaml"><a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-1"></a><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Publish Docker Image</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-2"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-3"></a><span class="nt">on</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-4"></a>  <span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-5"></a>    <span class="c1"># Publish `master` as Docker `latest` image.</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-6"></a>    <span class="nt">branches</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-7"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-8"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-9"></a>    <span class="c1"># Publish `v1.2.3` tags as releases.</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-10"></a>    <span class="nt">tags</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-11"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">v*</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-12"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-13"></a>  <span class="c1"># Run tests for PRs to master branch.</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-14"></a>  <span class="nt">pull_request</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-15"></a>    <span class="nt">branches</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-16"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-17"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-18"></a><span class="nt">env</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-19"></a>  <span class="nt">IMAGE_NAME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello-world</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-20"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-21"></a><span class="nt">jobs</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-22"></a>  <span class="c1"># Run tests.</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-23"></a>  <span class="nt">test</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-24"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-25"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-26"></a>    <span class="nt">steps</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-27"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-28"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-29"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run tests</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-30"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-31"></a>          <span class="no">if [ -f docker-compose.test.yml ]; then</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-32"></a>            <span class="no">docker-compose --file docker-compose.test.yml build</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-33"></a>            <span class="no">docker-compose --file docker-compose.test.yml run sut</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-34"></a>          <span class="no">else</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-35"></a>            <span class="no">docker build . --file Dockerfile</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-36"></a>          <span class="no">fi</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-37"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-38"></a>  <span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-39"></a>    <span class="c1"># Ensure test job passes before pushing image.</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-40"></a>    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-41"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-42"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-43"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-44"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-45"></a>    <span class="nt">steps</span><span class="p">:</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-46"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-47"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-48"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build image</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-49"></a>        <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-50"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-51"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Log into Docker Hub registry</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-52"></a>        <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo "${{ secrets.DOCKER_PASS }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-53"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-54"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Push image</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-55"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-56"></a>          <span class="no">IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-57"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-58"></a>          <span class="no"># Change all uppercase to lowercase</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-59"></a>          <span class="no">IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-60"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-61"></a>          <span class="no"># Strip git ref prefix from version</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-62"></a>          <span class="no">VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-63"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-64"></a>          <span class="no"># Strip "v" prefix from tag name</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-65"></a>          <span class="no">[[ "${{ github.ref }}" == "refs/tags/"* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e 's/^v//')</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-66"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-67"></a>          <span class="no"># Use Docker `latest` tag convention</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-68"></a>          <span class="no">[ "$VERSION" == "master" ] &amp;&amp; VERSION=latest</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-69"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-70"></a>          <span class="no"># verbose</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-71"></a>          <span class="no">echo IMAGE_ID=$IMAGE_ID</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-72"></a>          <span class="no">echo VERSION=$VERSION</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-73"></a>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-74"></a>          <span class="no"># tag the built image and push it to Docker Hub</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-75"></a>          <span class="no">docker tag $IMAGE_NAME $IMAGE_ID:$VERSION</span>
-<a name="rest_code_fe581887fcce4d5e848453ab7941ee1e-76"></a>          <span class="no">docker push $IMAGE_ID:$VERSION</span>
+<pre class="code yaml"><a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-1"></a><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Publish Docker Image</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-2"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-3"></a><span class="nt">on</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-4"></a>  <span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-5"></a>    <span class="c1"># Publish `master` as Docker `latest` image.</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-6"></a>    <span class="nt">branches</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-7"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-8"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-9"></a>    <span class="c1"># Publish `v1.2.3` tags as releases.</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-10"></a>    <span class="nt">tags</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-11"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">v*</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-12"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-13"></a>  <span class="c1"># Run tests for PRs to master branch.</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-14"></a>  <span class="nt">pull_request</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-15"></a>    <span class="nt">branches</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-16"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-17"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-18"></a><span class="nt">env</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-19"></a>  <span class="nt">IMAGE_NAME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello-world</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-20"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-21"></a><span class="nt">jobs</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-22"></a>  <span class="c1"># Run tests.</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-23"></a>  <span class="nt">test</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-24"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-25"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-26"></a>    <span class="nt">steps</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-27"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-28"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-29"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-30"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-31"></a>          <span class="no">if [ -f docker-compose.test.yml ]; then</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-32"></a>            <span class="no">docker-compose --file docker-compose.test.yml build</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-33"></a>            <span class="no">docker-compose --file docker-compose.test.yml run sut</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-34"></a>          <span class="no">else</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-35"></a>            <span class="no">docker build . --file Dockerfile</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-36"></a>          <span class="no">fi</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-37"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-38"></a>  <span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-39"></a>    <span class="c1"># Ensure test job passes before pushing image.</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-40"></a>    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-41"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-42"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-43"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-44"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-45"></a>    <span class="nt">steps</span><span class="p">:</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-46"></a>      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-47"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-48"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build image</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-49"></a>        <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-50"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-51"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Log into Docker Hub registry</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-52"></a>        <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo "${{ secrets.DOCKER_PASS }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-53"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-54"></a>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Push image</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-55"></a>        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-56"></a>          <span class="no">IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-57"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-58"></a>          <span class="no"># Change all uppercase to lowercase</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-59"></a>          <span class="no">IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-60"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-61"></a>          <span class="no"># Strip git ref prefix from version</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-62"></a>          <span class="no">VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-63"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-64"></a>          <span class="no"># Strip "v" prefix from tag name</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-65"></a>          <span class="no">[[ "${{ github.ref }}" == "refs/tags/"* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e 's/^v//')</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-66"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-67"></a>          <span class="no"># Use Docker `latest` tag convention</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-68"></a>          <span class="no">[ "$VERSION" == "master" ] &amp;&amp; VERSION=latest</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-69"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-70"></a>          <span class="no"># verbose</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-71"></a>          <span class="no">echo IMAGE_ID=$IMAGE_ID</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-72"></a>          <span class="no">echo VERSION=$VERSION</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-73"></a>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-74"></a>          <span class="no"># tag the built image and push it to Docker Hub</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-75"></a>          <span class="no">docker tag $IMAGE_NAME $IMAGE_ID:$VERSION</span>
+<a name="rest_code_e3a49c2f7831421a96dfa844b98f8060-76"></a>          <span class="no">docker push $IMAGE_ID:$VERSION</span>
 </pre>
 <p>Let's break down this file a little bit to explain every step:</p>
 <div class="section" id="name">
@@ -212,20 +212,20 @@ yaml file looks like this:</p>
 <div class="section" id="on">
 <h3>on</h3>
 <p>Determines when this Workflow will run:</p>
-<pre class="code yaml"><a name="rest_code_577412846fe54d83a595446c11db157d-1"></a><span class="nt">on</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-2"></a>  <span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-3"></a>    <span class="c1"># Publish `master` as Docker `latest` image.</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-4"></a>    <span class="nt">branches</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-5"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-6"></a>
-<a name="rest_code_577412846fe54d83a595446c11db157d-7"></a>    <span class="c1"># Publish `v1.2.3` tags as releases.</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-8"></a>    <span class="nt">tags</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-9"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">v*</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-10"></a>
-<a name="rest_code_577412846fe54d83a595446c11db157d-11"></a>  <span class="c1"># Run tests for any PRs.</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-12"></a>  <span class="nt">pull_request</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-13"></a>    <span class="nt">branches</span><span class="p">:</span>
-<a name="rest_code_577412846fe54d83a595446c11db157d-14"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+<pre class="code yaml"><a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-1"></a><span class="nt">on</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-2"></a>  <span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-3"></a>    <span class="c1"># Publish `master` as Docker `latest` image.</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-4"></a>    <span class="nt">branches</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-5"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-6"></a>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-7"></a>    <span class="c1"># Publish `v1.2.3` tags as releases.</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-8"></a>    <span class="nt">tags</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-9"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">v*</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-10"></a>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-11"></a>  <span class="c1"># Run tests for any PRs.</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-12"></a>  <span class="nt">pull_request</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-13"></a>    <span class="nt">branches</span><span class="p">:</span>
+<a name="rest_code_a20a8d9d7bbe4105ab323f5e5d4cc57c-14"></a>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
 </pre>
 <p>In this case <strong>GitHub</strong> will run this Workflow when you push changes to your <code class="docutils literal">master</code> branch, when you push a new tag
 starting with <code class="docutils literal">v</code> (for example tag <code class="docutils literal">v1.2.3</code>), or when you create a <code class="docutils literal">pull request</code> to the <code class="docutils literal">master</code> branch.
@@ -239,17 +239,17 @@ You can find more information <a class="reference external" href="https://help.g
 <h3>jobs</h3>
 <p>A Workflow is made up of one or more <code class="docutils literal">jobs</code>. Jobs run parallel by default. To run jobs sequentially, you can
 define dependencies on other jobs using the <code class="docutils literal">needs</code> key with the job name value.</p>
-<pre class="code yaml"><a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-1"></a><span class="nt">jobs</span><span class="p">:</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-2"></a>  <span class="nt">test</span><span class="p">:</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-3"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-4"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-5"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-6"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-7"></a>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-8"></a>  <span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-9"></a>    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-10"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_6bb6f8bf0b214b14b1b5f61381b698e5-11"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
+<pre class="code yaml"><a name="rest_code_222ec6f4543a4298849995c688762ccf-1"></a><span class="nt">jobs</span><span class="p">:</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-2"></a>  <span class="nt">test</span><span class="p">:</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-3"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-4"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-5"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-6"></a>  <span class="l l-Scalar l-Scalar-Plain">...</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-7"></a>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-8"></a>  <span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-9"></a>    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-10"></a>    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_222ec6f4543a4298849995c688762ccf-11"></a>    <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
 </pre>
 <p>In this Workflow, I defined two jobs: <code class="docutils literal">test</code> and <code class="docutils literal">push</code>. The job <code class="docutils literal">test</code> will be used to perform tests on the
 built image, and <code class="docutils literal">push</code> will be used to push the image to Docker Hub. <code class="docutils literal">push</code> depends on <code class="docutils literal">test</code> and will continue
@@ -262,69 +262,69 @@ be executed if the event was <code class="docutils literal">git push</code>. Bot
 <p><strong>Actions</strong> are individual tasks that you can use to create jobs and customize your Workflow. <strong>Actions</strong> are code, so
 you can edit, reuse, share, and fork them like code. You can create your own actions or use actions shared by the
 <a class="reference external" href="https://github.com/marketplace?type=actions">GitHub community</a></p>
-<pre class="code yaml"><a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-1"></a><span class="nt">steps</span><span class="p">:</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-2"></a>  <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-3"></a>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-4"></a>  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run tests</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-5"></a>    <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-6"></a>      <span class="no">if [ -f docker-compose.test.yml ]; then</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-7"></a>        <span class="no">docker-compose --file docker-compose.test.yml build</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-8"></a>        <span class="no">docker-compose --file docker-compose.test.yml run sut</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-9"></a>      <span class="no">else</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-10"></a>        <span class="no">docker build . --file Dockerfile</span>
-<a name="rest_code_8fb9c3873aaa4d82836c4508ec8e1f7c-11"></a>      <span class="no">fi</span>
+<pre class="code yaml"><a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-1"></a><span class="nt">steps</span><span class="p">:</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-2"></a>  <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-3"></a>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-4"></a>  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-5"></a>    <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-6"></a>      <span class="no">if [ -f docker-compose.test.yml ]; then</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-7"></a>        <span class="no">docker-compose --file docker-compose.test.yml build</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-8"></a>        <span class="no">docker-compose --file docker-compose.test.yml run sut</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-9"></a>      <span class="no">else</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-10"></a>        <span class="no">docker build . --file Dockerfile</span>
+<a name="rest_code_b787255d9d3e4bd4bd18e242a18f9251-11"></a>      <span class="no">fi</span>
 </pre>
 <p>In the job <code class="docutils literal">test</code>, I use an <strong>action</strong> that checks-out the repository under <code class="docutils literal">$GITHUB_WORKSPACE</code>, and then it executes a
 system unit test service (<code class="docutils literal">sut</code>) if it's defined. See also <a class="reference external" href="https://docs.docker.com/docker-hub/builds/automated-testing/">https://docs.docker.com/docker-hub/builds/automated-testing/</a></p>
 <p>You can create a <code class="docutils literal"><span class="pre">docker-compose.test.yml</span></code> file which defines a <code class="docutils literal">sut</code> service that lists the tests to be run.</p>
-<pre class="code bash"><a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-1"></a>version: <span class="s1">'3.3'</span>
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-2"></a>services:
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-3"></a>  sut:
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-4"></a>    build:
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-5"></a>      context: .
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-6"></a>      dockerfile: Dockerfile
-<a name="rest_code_ac053ad6d01b49d0bdac17e03cf217d5-7"></a>    command: run_test.sh
+<pre class="code bash"><a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-1"></a>version: <span class="s1">'3.3'</span>
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-2"></a>services:
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-3"></a>  sut:
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-4"></a>    build:
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-5"></a>      context: .
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-6"></a>      dockerfile: Dockerfile
+<a name="rest_code_b15c8b0bcb10493cbe2c6a8cc74e2a2b-7"></a>    command: run_test.sh
 </pre>
 <p>Finally if <code class="docutils literal">test</code> successfully passed and the Github event was a push, Github will execute the job <code class="docutils literal">push</code>:</p>
-<pre class="code yaml"><a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-1"></a><span class="nt">push</span><span class="p">:</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-2"></a>  <span class="c1"># Ensure test job passes before pushing image.</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-3"></a>  <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-4"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-5"></a>  <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-6"></a>  <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-7"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-8"></a>  <span class="nt">steps</span><span class="p">:</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-9"></a>    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-10"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-11"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build image</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-12"></a>      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-13"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-14"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Log into Docker Hub registry</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-15"></a>      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo "${{ secrets.DOCKER_PASS }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-16"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-17"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Push image</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-18"></a>      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-19"></a>        <span class="no">IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-20"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-21"></a>        <span class="no"># Change all uppercase to lowercase</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-22"></a>        <span class="no">IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-23"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-24"></a>        <span class="no"># Strip git ref prefix from version</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-25"></a>        <span class="no">VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-26"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-27"></a>        <span class="no"># Strip "v" prefix from tag name</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-28"></a>        <span class="no">[[ "${{ github.ref }}" == "refs/tags/"* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e 's/^v//')</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-29"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-30"></a>        <span class="no"># Use Docker `latest` tag convention</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-31"></a>        <span class="no">[ "$VERSION" == "master" ] &amp;&amp; VERSION=latest</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-32"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-33"></a>        <span class="no"># verbose</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-34"></a>        <span class="no">echo IMAGE_ID=$IMAGE_ID</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-35"></a>        <span class="no">echo VERSION=$VERSION</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-36"></a>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-37"></a>        <span class="no"># tag the built image and push it to Docker Hub</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-38"></a>        <span class="no">docker tag $IMAGE_NAME $IMAGE_ID:$VERSION</span>
-<a name="rest_code_f1e342ef51a143bc8ecbb68f19168898-39"></a>        <span class="no">docker push $IMAGE_ID:$VERSION</span>
+<pre class="code yaml"><a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-1"></a><span class="nt">push</span><span class="p">:</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-2"></a>  <span class="c1"># Ensure test job passes before pushing image.</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-3"></a>  <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-4"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-5"></a>  <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-6"></a>  <span class="nt">if</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github.event_name == 'push'</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-7"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-8"></a>  <span class="nt">steps</span><span class="p">:</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-9"></a>    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-10"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-11"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build image</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-12"></a>      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-13"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-14"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Log into Docker Hub registry</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-15"></a>      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo "${{ secrets.DOCKER_PASS }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-16"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-17"></a>    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Push image</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-18"></a>      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-19"></a>        <span class="no">IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-20"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-21"></a>        <span class="no"># Change all uppercase to lowercase</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-22"></a>        <span class="no">IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-23"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-24"></a>        <span class="no"># Strip git ref prefix from version</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-25"></a>        <span class="no">VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-26"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-27"></a>        <span class="no"># Strip "v" prefix from tag name</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-28"></a>        <span class="no">[[ "${{ github.ref }}" == "refs/tags/"* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e 's/^v//')</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-29"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-30"></a>        <span class="no"># Use Docker `latest` tag convention</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-31"></a>        <span class="no">[ "$VERSION" == "master" ] &amp;&amp; VERSION=latest</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-32"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-33"></a>        <span class="no"># verbose</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-34"></a>        <span class="no">echo IMAGE_ID=$IMAGE_ID</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-35"></a>        <span class="no">echo VERSION=$VERSION</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-36"></a>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-37"></a>        <span class="no"># tag the built image and push it to Docker Hub</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-38"></a>        <span class="no">docker tag $IMAGE_NAME $IMAGE_ID:$VERSION</span>
+<a name="rest_code_9cd86c55547540aa9172f5bad09f91f4-39"></a>        <span class="no">docker push $IMAGE_ID:$VERSION</span>
 </pre>
 <p>Here we'll checks-out again the repository under <code class="docutils literal">$GITHUB_WORKSPACE</code> in a different Ubuntu environment and then
 it will execute the following tasks:</p>
@@ -341,7 +341,7 @@ it will execute the following tasks:</p>
 <code class="docutils literal">secrets</code> and are only exposed to Github Actions. Secrets are very useful for sensitive variables like passwords. You
 can add them in the repository <strong>Settings</strong>:</p>
 <img alt="/images/github-actions-secrets.png" src="../../images/github-actions-secrets.png"><br><br><p>Once you have configured your secrets, you can use them from the context named <code class="docutils literal">secrets</code>:</p>
-<pre class="code bash"><a name="rest_code_f97d4939f7d942e497ea61fd5f8bf1c7-1"></a><span class="si">${</span><span class="p">{ secrets.&lt;name&gt; </span><span class="si">}</span><span class="o">}</span>
+<pre class="code bash"><a name="rest_code_c8b19b6f80ea48889aee0c9c0a3b3e69-1"></a><span class="si">${</span><span class="p">{ secrets.&lt;name&gt; </span><span class="si">}</span><span class="o">}</span>
 </pre>
 <br>
 </div>

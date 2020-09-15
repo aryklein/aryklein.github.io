@@ -7,54 +7,54 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://ary.kleinerman.org/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/2020/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/archive.html</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/ci/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/docker/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/github-actions/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/github-pages/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/github/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/categories/nikola/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/pages/about/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/posts/how-to-create-your-blog-for-free/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/</loc>
-  <lastmod>2020-06-18T20:46:00Z</lastmod>
+  <lastmod>2020-09-15T13:33:00Z</lastmod>
  </url>
 </urlset>
