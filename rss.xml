@@ -3,7 +3,14 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 15 Sep 2020 13:33:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Publishing your Docker images with Github Actions</title><link>https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/</link><dc:creator>Ary Kleinerman</dc:creator><description>&lt;div&gt;&lt;p&gt;Last weekend I was playing around with &lt;strong&gt;Github Actions&lt;/strong&gt; and it blew my mind! Basically it's another CI tool, like
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 26 Oct 2020 04:21:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My favorite Vim commands</title><link>https://ary.kleinerman.org/posts/my-favorite-vim-commands/</link><dc:creator>Ary Kleinerman</dc:creator><description>&lt;div&gt;&lt;p&gt;I've been using Vim for long time, almost since I started using Linux, but I had never taken the time to
+learn good commands to make my life easier.&lt;/p&gt;
+&lt;p&gt;A few days ago I found a guy on YouTube &lt;a class="reference external" href="https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw"&gt;ThePrimeagen&lt;/a&gt; that explains some Vim movements and I was
+struck by how fast this guy was on Vim, so I decided to learn more about it. I have to clarify that I'm far
+from being fast like this guy, but I'm getting better ;-)&lt;/p&gt;
+&lt;p&gt;Here are some of the commands that seem most useful to me and I hope they help you as they help me. Please
+comment below or create a PR in my Github repository if you have any other command to recommend me.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ary.kleinerman.org/posts/my-favorite-vim-commands/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>Vim</category><guid>https://ary.kleinerman.org/posts/my-favorite-vim-commands/</guid><pubDate>Sun, 25 Oct 2020 00:24:28 GMT</pubDate></item><item><title>Publishing your Docker images with Github Actions</title><link>https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/</link><dc:creator>Ary Kleinerman</dc:creator><description>&lt;div&gt;&lt;p&gt;Last weekend I was playing around with &lt;strong&gt;Github Actions&lt;/strong&gt; and it blew my mind! Basically it's another CI tool, like
 &lt;a class="reference external" href="https://circleci.com"&gt;CircleCI&lt;/a&gt;, &lt;a class="reference external" href="https://travis-ci.org/"&gt;Travis&lt;/a&gt;, or
 &lt;a class="reference external" href="https://docs.gitlab.com/ee/ci/"&gt;Gitlab CI/CD&lt;/a&gt; but it is from Github.&lt;/p&gt;
 &lt;p&gt;The four main things that attracted me were:&lt;/p&gt;

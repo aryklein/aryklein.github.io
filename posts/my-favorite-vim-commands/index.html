@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Useful Vim commands">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My favorite Vim commands | /bin/ary</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://ary.kleinerman.org/posts/my-favorite-vim-commands/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Ary Kleinerman">
+<link rel="prev" href="../publishing-your-docker-images-with-github-actions/" title="Publishing your Docker images with Github Actions" type="text/html">
+<meta property="og:site_name" content="/bin/ary">
+<meta property="og:title" content="My favorite Vim commands">
+<meta property="og:url" content="https://ary.kleinerman.org/posts/my-favorite-vim-commands/">
+<meta property="og:description" content="Useful Vim commands">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-10-24T21:24:28-03:00">
+<meta property="article:tag" content="Vim">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../">
+
+            <span id="blog-title">/bin/ary</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav"></ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../pages/about" class="nav-link">About me</a>
+                </li>
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">My favorite Vim commands</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Ary Kleinerman
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-10-24T21:24:28-03:00" itemprop="datePublished" title="2020-10-24 21:24">2020-10-24 21:24</time></a>
+            </p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/my-favorite-vim-commands.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>I've been using Vim for long time, almost since I started using Linux, but I had never taken the time to
+learn good commands to make my life easier.</p>
+<p>A few days ago I found a guy on YouTube <a class="reference external" href="https://www.youtube.com/channel/UC8ENHE5xdFSwx71u3fDH5Xw">ThePrimeagen</a> that explains some Vim movements and I was
+struck by how fast this guy was on Vim, so I decided to learn more about it. I have to clarify that I'm far
+from being fast like this guy, but I'm getting better ;-)</p>
+<p>Here are some of the commands that seem most useful to me and I hope they help you as they help me. Please
+comment below or create a PR in my Github repository if you have any other command to recommend me.</p>
+<!-- TEASER_END -->
+<div class="section" id="cursor-movement">
+<h2>Cursor movement</h2>
+<p><code class="docutils literal">l</code> ➜ left.</p>
+<p><code class="docutils literal">k</code> ➜ up.</p>
+<p><code class="docutils literal">j</code> ➜ down.</p>
+<p><code class="docutils literal">h</code> ➜ left.</p>
+<p><code class="docutils literal">w</code> ➜ jump by start of words.</p>
+<p><code class="docutils literal">b</code> ➜ jump backward by words.</p>
+<p><code class="docutils literal">^</code> ➜ go to the first non-whitespace character in the line.</p>
+<p><code class="docutils literal">0</code> ➜ move the cursor to the beginning of the line.</p>
+<p><code class="docutils literal">$</code> ➜ move to the end of the line.</p>
+<p><code class="docutils literal">{</code> ➜ move one paragraph above.</p>
+<p><code class="docutils literal">}</code> ➜ move one parafraph below.</p>
+<p><code class="docutils literal">gg</code> ➜ jump to the beginning of the file.</p>
+<p><code class="docutils literal">G</code> ➜ jump to the end of the file.</p>
+<p><code class="docutils literal">:{absolut_line_number}</code> ➜ jump to a specific line number. For example <code class="docutils literal">:16</code>.</p>
+<p><code class="docutils literal"><span class="pre">{numer_of_lines}{k|j}</span></code> ➜ move up/down number of lines from the current cursor possition. e.g. <code class="docutils literal">10j</code> jump
+jump 10 lines below from the current cursor possition.</p>
+<p><code class="docutils literal"><span class="pre">{numer_of_columns}{h|l}</span></code> ➜ move left/right number of columns from the current cursor possition.</p>
+<p><em>Note: for the commands that use line numbers, consider to enable relative line number</em>: <code class="docutils literal">:set nu rnu</code>.</p>
+<p><code class="docutils literal">f{char}</code> ➜  find first occurence of <code class="docutils literal">{char}</code> on a line (to the right). Cursor is placed on <code class="docutils literal">{char}</code>
+inclusive.</p>
+<p><code class="docutils literal">F{char}</code> ➜ same as the command above but to the left.</p>
+<p><code class="docutils literal">/{pattern}</code> ➜ search for <code class="docutils literal">{pattern}</code>. <code class="docutils literal">n</code> jumps to the next occurrence, <code class="docutils literal">N</code> to the previous one.</p>
+<p><code class="docutils literal">*</code> ➜ immediately go to the next occurrence.</p>
+<p><code class="docutils literal">#</code> ➜ immediately go to the previous occurrence.</p>
+<div class="section" id="open-a-file-and-let-the-curson-on-a-desired-line">
+<h3>Open a file and let the curson on a desired line</h3>
+<p>Sometimes it's useful open a file in a specific line. It usually happens to me when I have an error in a file
+and the program specifies the line where the error is.</p>
+<p><code class="docutils literal">$ vim +n {file_name}</code> ➜ open <code class="docutils literal">file_name</code> and with the curson in the line <code class="docutils literal">n</code>. e.g:
+<code class="docutils literal">$ vim +43 hello_world.py</code>.</p>
+</div>
+</div>
+<div class="section" id="insert-mode-inserting-appending-text">
+<h2>Insert mode - inserting/appending text</h2>
+<p><code class="docutils literal">i</code> ➜ start insert mode at cursor.</p>
+<p><code class="docutils literal">I</code> ➜ insert at the beginning of the line.</p>
+<p><code class="docutils literal">a</code> ➜ append after the cursor.</p>
+<p><code class="docutils literal">A</code> ➜ append at the end of the line.</p>
+<p><code class="docutils literal">o</code> ➜ open (append) blank line below current line (no need to press return).</p>
+<p><code class="docutils literal">O</code> ➜ open blank line above current line.</p>
+<p><code class="docutils literal">Esc</code> ➜ exit insert mode.</p>
+</div>
+<div class="section" id="editing">
+<h2>Editing</h2>
+<p><code class="docutils literal">r</code> ➜ replace a single character (does not use insert mode).</p>
+<p><code class="docutils literal">cw</code> ➜ change (replace) to the end of word.</p>
+<p><code class="docutils literal">c$</code> ➜ change (replace) to the end of line.</p>
+<p><code class="docutils literal">s</code> ➜ delete character at cursor and subsitute text.</p>
+<p><code class="docutils literal">S</code> ➜ delete line at cursor and substitute text (same as cc).</p>
+<p><code class="docutils literal">u</code> ➜ undo.</p>
+<p><code class="docutils literal">.</code> ➜ repeat last command.</p>
+<p><code class="docutils literal">gU</code> ➜ (visual) chage to UPERCASE.</p>
+<p><code class="docutils literal">gu</code> ➜ (visual) change to lowercase.</p>
+<p><code class="docutils literal">ci" / ci'</code> ➜ change text inside the single or double quotes (the cursor can be in any position of the
+line).</p>
+<p><code class="docutils literal">ci{ / ci( / ci&lt; / ci[</code> ➜ change text inside the speech marks (cursor must be inside the).</p>
+</div>
+<div class="section" id="splits">
+<h2>Splits</h2>
+<p><code class="docutils literal">:split / :sp</code> ➜ horizontal split.</p>
+<p><code class="docutils literal">:vertical split / :vs</code> ➜ vertical split.</p>
+<p><code class="docutils literal">:resize <span class="pre">{+|-}{n}</span></code> ➜ resize horizontal split <code class="docutils literal">n</code> lines.</p>
+<p><code class="docutils literal">:vertical resize <span class="pre">{+|-}{n}</span></code> ➜ resize vertical split <code class="docutils literal">n</code> columns.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; {l|h|k|l}</code> ➜ move between splits.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; {H|J|K|L}</code> ➜ flip splits.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; _</code> ➜ minimize horizontal split.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; |</code> ➜ minimize vertical split.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; =</code> ➜ reset the size of all split.</p>
+<p><code class="docutils literal">:vertical terminal</code> ➜ vertical split and open a terminal.</p>
+<p><code class="docutils literal">:terminal</code> ➜ horizontal split and open a terminal.</p>
+<p><code class="docutils literal">&lt;Ctrl+w&gt; N</code> ➜ exit insert mode in a terminal.</p>
+</div>
+<div class="section" id="tabs">
+<h2>Tabs</h2>
+<p><code class="docutils literal">:tabe {file}</code> ➜ open <code class="docutils literal">{file}</code> in a new tab.</p>
+<p><code class="docutils literal">gt</code> ➜ move forward to the next tab.</p>
+<p><code class="docutils literal">gT</code> ➜ go to the previous tab.</p>
+</div>
+<div class="section" id="extras">
+<h2>Extras</h2>
+<p><code class="docutils literal">ZZ</code> ➜ save and exit ;-)</p>
+<p><code class="docutils literal"><span class="pre">{from_line}{to_line}s/{pattern}/{replace}</span></code> ➜ substitution with regex. My favorite one. For example:
+<code class="docutils literal">3,10s/foo/bar/</code> will replace <code class="docutils literal">foo</code> by <code class="docutils literal">bar</code> from line 3 to 10. <code class="docutils literal"><span class="pre">6,$s/foo/bar/</span></code> replaces from line 6
+to the end of the file.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>Vim is my favorite text editor for the following reasons:</p>
+<ul class="simple">
+<li><p>Is available on most, if not all Linux distributions out there.</p></li>
+<li><p>Well documented.</p></li>
+<li><p>It is very customizable and extensible.</p></li>
+<li><p>Uses less amount of system resources than some well know graphical text editors</p></li>
+</ul>
+<p>Some of these commands take time to get used to but if you can learn to use them, the speed and efficiency
+you achieve with Vim is incredible.</p>
+<p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external" href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/my-favorite-vim-commands.rst"> pull
+ request</a>. The code of this article is available on Github.</small></p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/vim/" rel="tag">Vim</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../publishing-your-docker-images-with-github-actions/" rel="prev" title="Publishing your Docker images with Github Actions">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="ary-kleinerman-org",
+            disqus_url="https://ary.kleinerman.org/posts/my-favorite-vim-commands/",
+        disqus_title="My favorite Vim commands",
+        disqus_identifier="cache/posts/my-favorite-vim-commands.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="ary-kleinerman-org";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2020         <a>Ary Kleinerman</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>        
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
