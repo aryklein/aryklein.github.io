@@ -1,7 +1,7 @@
 ---
 title: "Publishing Your Docker Images With Github Actions"
 date: 2020-06-14T15:28:23-03:00
-draft: true
+draft: false
 ---
 
 Last weekend I was playing around with **Github Actions** and it blew my
