@@ -10,10 +10,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Ary Kleinerman</copyright>
-    <lastBuildDate>Sun, 14 Jun 2020 15:28:23 -0300</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2020 16:51:08 -0300</lastBuildDate>
     
 	<atom:link href="https://ary.kleinerman.org/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My Favorite Vim Commands</title>
+      <link>https://ary.kleinerman.org/posts/my-favorite-vim-commands/</link>
+      <pubDate>Sat, 24 Oct 2020 16:51:08 -0300</pubDate>
+      
+      <guid>https://ary.kleinerman.org/posts/my-favorite-vim-commands/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          I&amp;rsquo;ve been using Vim for long time, almost since I started using Linux, but I had never taken the time to learn good commands to make my life easier.
+A few days ago I found a guy on YouTube ThePrimeagen that explains some Vim movements and I was struck by how fast this guy was on Vim, so I decided to learn more about it. I have to clarify that I&amp;rsquo;m far from being fast like this guy, but I&amp;rsquo;m getting better ;-)
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Publishing Your Docker Images With Github Actions</title>
