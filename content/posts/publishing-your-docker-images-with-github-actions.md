@@ -322,6 +322,6 @@ If you want to see an example, check this respository:
 
 <br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
-href="https://github.com/aryklein/aryklein.github.io/edit/src/posts/publishing-your-docker-images-with-github-actions.rst">
+href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/publishing-your-docker-images-with-github-actions.rst">
 pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
 
