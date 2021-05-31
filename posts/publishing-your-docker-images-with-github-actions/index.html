@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Publishing Your Docker Images With Github Actions ::
+        Ary Kleinerman — My personal blog
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Last weekend I was playing around with Github Actions and it blew my mind! Basically it&amp;rsquo;s another CI tool, like CircleCI, Travis, or Gitlab CI/CD but it is from Github.
+The four main things that attracted me were:
+ It is free for public repositories or 2000 minutes free for private repositories. It is easy to use (it uses YAML syntax). There is good official documentation. The CI tool and your code live in the same place."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://ary.kleinerman.org/assets/style.css" />
+
+<link rel="stylesheet" href="https://ary.kleinerman.org/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://ary.kleinerman.org/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://ary.kleinerman.org/img/favicon.png" />
+
+
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://ary.kleinerman.org/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Publishing Your Docker Images With Github Actions"/>
+<meta name="twitter:description" content="Last weekend I was playing around with Github Actions and it blew my mind! Basically it&rsquo;s another CI tool, like CircleCI, Travis, or Gitlab CI/CD but it is from Github.
+The four main things that attracted me were:
+ It is free for public repositories or 2000 minutes free for private repositories. It is easy to use (it uses YAML syntax). There is good official documentation. The CI tool and your code live in the same place."/>
+
+
+
+<meta property="og:title" content="Publishing Your Docker Images With Github Actions" />
+<meta property="og:description" content="Last weekend I was playing around with Github Actions and it blew my mind! Basically it&rsquo;s another CI tool, like CircleCI, Travis, or Gitlab CI/CD but it is from Github.
+The four main things that attracted me were:
+ It is free for public repositories or 2000 minutes free for private repositories. It is easy to use (it uses YAML syntax). There is good official documentation. The CI tool and your code live in the same place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-14T15:28:23-03:00" />
+<meta property="article:modified_time" content="2020-06-14T15:28:23-03:00" /><meta property="og:site_name" content="Ary Kleinerman" />
+
+
+
+
+
+
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ary@kleinerman.org:/blog$</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Publishing Your Docker Images With Github Actions</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-14
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+        <span class="post-read-time"
+          >— 7 min read</span
+        >
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>Last weekend I was playing around with <strong>Github Actions</strong> and it blew my
+mind! Basically it&rsquo;s another CI tool, like
+<a href="https://circleci.com">CircleCI</a>, <a href="https://travis-ci.org/">Travis</a>, or
+<a href="https://docs.gitlab.com/ee/ci/">Gitlab CI/CD</a> but it is from Github.</p>
+<p>The four main things that attracted me were:</p>
+<ul>
+<li>It is free for public repositories or 2000 minutes free for private
+repositories.</li>
+<li>It is easy to use (it uses YAML syntax).</li>
+<li>There is good official documentation.</li>
+<li>The CI tool and your code live in the same place.</li>
+</ul>
+<p>Having seen these benefits, I decided to learn a little about it and
+share my experience. In this post I will show you how I use Github
+Actions to build, test and publish my Docker images.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Github calls <code>Workflows</code> to custom automated processes that you can
+configure in your Github repository to build, test, package, release, or
+deploy any project. These Workflows, written in yaml, need to be stored
+in the <code>.github/workflows</code> directory in the root of your repository. You
+can create more than one Workflow in a repository. Workflows must have
+at least one <code>job</code>, and jobs contain a set of <code>steps</code> that perform
+individual tasks. <code>Steps</code> can run commands or use an action. Later we&rsquo;ll
+see what an <code>action</code> is.</p>
+<h2 id="setting-up-your-workflow">Setting up your Workflow</h2>
+<p>To start using Github Actions, you need to create the
+<code>.github/workflows</code> directory in the root of your repository, and then
+create a <code>yaml</code> file with the Workflow definition. The file name doesn&rsquo;t
+matter, so you can use any file name, but it must be <code>.yaml</code> or <code>.yml</code>.
+In this case my Workflow will build, test, and publish docker images, so
+my yaml file looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Publish Docker Image</span>
+
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">push</span>:
+    <span style="color:#75715e"># Publish `master` as Docker `latest` image.</span>
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+
+    <span style="color:#75715e"># Publish `v1.2.3` tags as releases.</span>
+    <span style="color:#f92672">tags</span>:
+      - <span style="color:#ae81ff">v*</span>
+
+  <span style="color:#75715e"># Run tests for PRs to master branch.</span>
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+
+<span style="color:#f92672">env</span>:
+  <span style="color:#f92672">IMAGE_NAME</span>: <span style="color:#ae81ff">hello-world</span>
+
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#75715e"># Run tests.</span>
+  <span style="color:#f92672">test</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+
+    <span style="color:#f92672">steps</span>:
+      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run tests</span>
+        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">          if [ -f docker-compose.test.yml ]; then
+</span><span style="color:#e6db74">            docker-compose --file docker-compose.test.yml build
+</span><span style="color:#e6db74">            docker-compose --file docker-compose.test.yml run sut
+</span><span style="color:#e6db74">          else
+</span><span style="color:#e6db74">            docker build . --file Dockerfile
+</span><span style="color:#e6db74">          fi</span>          
+
+  <span style="color:#f92672">push</span>:
+    <span style="color:#75715e"># Ensure test job passes before pushing image.</span>
+    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">test</span>
+
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;push&#39;</span>
+
+    <span style="color:#f92672">steps</span>:
+      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build image</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
+
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Log into Docker Hub registry</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo &#34;${{ secrets.DOCKER_PASS }}&#34; | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
+
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push image</span>
+        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">          IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # Change all uppercase to lowercase
+</span><span style="color:#e6db74">          IMAGE_ID=$(echo $IMAGE_ID | tr &#39;[A-Z]&#39; &#39;[a-z]&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # Strip git ref prefix from version
+</span><span style="color:#e6db74">          VERSION=$(echo &#34;${{ github.ref }}&#34; | sed -e &#39;s,.*/\(.*\),\1,&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # Strip &#34;v&#34; prefix from tag name
+</span><span style="color:#e6db74">          [[ &#34;${{ github.ref }}&#34; == &#34;refs/tags/&#34;* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e &#39;s/^v//&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # Use Docker `latest` tag convention
+</span><span style="color:#e6db74">          [ &#34;$VERSION&#34; == &#34;master&#34; ] &amp;&amp; VERSION=latest
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # verbose
+</span><span style="color:#e6db74">          echo IMAGE_ID=$IMAGE_ID
+</span><span style="color:#e6db74">          echo VERSION=$VERSION
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          # tag the built image and push it to Docker Hub
+</span><span style="color:#e6db74">          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+</span><span style="color:#e6db74">          docker push $IMAGE_ID:$VERSION</span>          
+</code></pre></div><p>Let&rsquo;s break down this file a little bit to explain every step:</p>
+<h3 id="name">name</h3>
+<p>This key defines the name of the Workflow. You can use whaterver name
+you prefer.</p>
+<h3 id="on">on</h3>
+<p>Determines when this Workflow will run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">on</span>:
+  <span style="color:#f92672">push</span>:
+    <span style="color:#75715e"># Publish `master` as Docker `latest` image.</span>
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+
+    <span style="color:#75715e"># Publish `v1.2.3` tags as releases.</span>
+    <span style="color:#f92672">tags</span>:
+      - <span style="color:#ae81ff">v*</span>
+
+  <span style="color:#75715e"># Run tests for any PRs.</span>
+  <span style="color:#f92672">pull_request</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+</code></pre></div><p>In this case <strong>GitHub</strong> will run this Workflow when you push changes to
+your <code>master</code> branch, when you push a new tag starting with <code>v</code> (for
+example tag <code>v1.2.3</code>), or when you create a <code>pull request</code> to the
+<code>master</code> branch. You can find more information
+<a href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on">here</a></p>
+<h3 id="env">env</h3>
+<p>This key defines global environment variables. I used it for the Docker
+image name <code>hello-world</code>.</p>
+<h3 id="jobs">jobs</h3>
+<p>A Workflow is made up of one or more <code>jobs</code>. Jobs run parallel by
+default. To run jobs sequentially, you can define dependencies on other
+jobs using the <code>needs</code> key with the job name value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">test</span>:
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+  <span style="color:#ae81ff">...</span>
+  <span style="color:#ae81ff">...</span>
+  <span style="color:#ae81ff">...</span>
+
+  <span style="color:#f92672">push</span>:
+    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">test</span>
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;push&#39;</span>
+</code></pre></div><p>In this Workflow, I defined two jobs: <code>test</code> and <code>push</code>. The job <code>test</code>
+will be used to perform tests on the built image, and <code>push</code> will be
+used to push the image to Docker Hub. <code>push</code> depends on <code>test</code> and will
+continue its execution only if the job <code>test</code> successfully passed. While
+<code>test</code> will be always executed, <code>push</code> will only be executed if the
+event was <code>git push</code>. Both jobs will run in a virtual <strong>Ubuntu</strong>
+environment.</p>
+<h3 id="steps">steps</h3>
+<p>A job is made of small sub-tasks called <code>steps</code> and they can run
+commands, setup tasks, or run an <strong>action</strong>.</p>
+<p><strong>Actions</strong> are individual tasks that you can use to create jobs and
+customize your Workflow. <strong>Actions</strong> are code, so you can edit, reuse,
+share, and fork them like code. You can create your own actions or use
+actions shared by the <a href="https://github.com/marketplace?type=actions">GitHub
+community</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">steps</span>:
+  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run tests</span>
+    <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">      if [ -f docker-compose.test.yml ]; then
+</span><span style="color:#e6db74">        docker-compose --file docker-compose.test.yml build
+</span><span style="color:#e6db74">        docker-compose --file docker-compose.test.yml run sut
+</span><span style="color:#e6db74">      else
+</span><span style="color:#e6db74">        docker build . --file Dockerfile
+</span><span style="color:#e6db74">      fi</span>      
+</code></pre></div><p>In the job <code>test</code>, I use an <strong>action</strong> that checks-out the repository
+under <code>$GITHUB_WORKSPACE</code>, and then it executes a system unit test
+service (<code>sut</code>) if it&rsquo;s defined. See also
+<a href="https://docs.docker.com/docker-hub/builds/automated-testing/">https://docs.docker.com/docker-hub/builds/automated-testing/</a></p>
+<p>You can create a <code>docker-compose.test.yml</code> file which defines a <code>sut</code>
+service that lists the tests to be run.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">version: <span style="color:#e6db74">&#39;3.3&#39;</span>
+services:
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: run_test.sh
+</code></pre></div><p>Finally if <code>test</code> successfully passed and the Github event was a push,
+Github will execute the job <code>push</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">push</span>:
+  <span style="color:#75715e"># Ensure test job passes before pushing image.</span>
+  <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">test</span>
+
+  <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+  <span style="color:#f92672">if</span>: <span style="color:#ae81ff">github.event_name == &#39;push&#39;</span>
+
+  <span style="color:#f92672">steps</span>:
+    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build image</span>
+      <span style="color:#f92672">run</span>: <span style="color:#ae81ff">docker build . --file Dockerfile --tag $IMAGE_NAME</span>
+
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Log into Docker Hub registry</span>
+      <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo &#34;${{ secrets.DOCKER_PASS }}&#34; | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin</span>
+
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Push image</span>
+      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">        IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # Change all uppercase to lowercase
+</span><span style="color:#e6db74">        IMAGE_ID=$(echo $IMAGE_ID | tr &#39;[A-Z]&#39; &#39;[a-z]&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # Strip git ref prefix from version
+</span><span style="color:#e6db74">        VERSION=$(echo &#34;${{ github.ref }}&#34; | sed -e &#39;s,.*/\(.*\),\1,&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # Strip &#34;v&#34; prefix from tag name
+</span><span style="color:#e6db74">        [[ &#34;${{ github.ref }}&#34; == &#34;refs/tags/&#34;* ]] &amp;&amp; VERSION=$(echo $VERSION | sed -e &#39;s/^v//&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # Use Docker `latest` tag convention
+</span><span style="color:#e6db74">        [ &#34;$VERSION&#34; == &#34;master&#34; ] &amp;&amp; VERSION=latest
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # verbose
+</span><span style="color:#e6db74">        echo IMAGE_ID=$IMAGE_ID
+</span><span style="color:#e6db74">        echo VERSION=$VERSION
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        # tag the built image and push it to Docker Hub
+</span><span style="color:#e6db74">        docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+</span><span style="color:#e6db74">        docker push $IMAGE_ID:$VERSION</span>        
+</code></pre></div><p>Here we&rsquo;ll checks-out again the repository under <code>$GITHUB_WORKSPACE</code> in
+a different Ubuntu environment and then it will execute the following
+tasks:</p>
+<ol>
+<li>Build the Docker image using <code>docker build</code> commmand.</li>
+<li>Log in to Docker Hub (needed to push an image)</li>
+<li>Tag the Docker built image.</li>
+<li>Push the tagged image to Docker Hub.</li>
+</ol>
+<h2 id="secrets">Secrets</h2>
+<p>In this Workflow, I&rsquo;ve used <code>secrets</code>. Secrets are encrypted environment
+variables that live in the context named <code>secrets</code> and are only exposed
+to Github Actions. Secrets are very useful for sensitive variables like
+passwords. You can add them in the repository <strong>Settings</strong>:</p>
+<p><img src="/img/github-actions-secrets.png" alt="image"></p>
+<p>Once you have configured your secrets, you can use them from the context
+named <code>secrets</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">${</span>{ secrets.&lt;name&gt; <span style="color:#e6db74">}</span><span style="color:#f92672">}</span>
+</code></pre></div><h2 id="workflows-logs">Workflows logs</h2>
+<p>Once you have pushed a Workflow in your repository, when one of the
+GitHub events (defined in the yaml file) triggers the Workflow, you can
+see the pipeline logs in the <strong>Actions</strong> tab.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>I found <strong>Github Actions</strong> very powerful and easy to configure a CI/CD
+pipeline for your application or whatever you may want to build. It
+requires minimal configuration and its syntax and official documetation
+helps to make it a very friendly tool. There are many other tools that
+are very similar, but what I like about it is that the code and the tool
+live in the same place, so you don&rsquo;t have to sign up to other vendors
+like Travis or CircleCI.</p>
+<p>If you want to see an example, check this respository:</p>
+<ul>
+<li><a href="https://github.com/aryklein/flask-hello">https://github.com/aryklein/flask-hello</a></li>
+</ul>
+<p><br><hr></p>
+<p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
+href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/publishing-your-docker-images-with-github-actions.rst">
+pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
+
+    </div>
+    
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">Ary Kleinerman</div>
+      
+  </div>
+</footer>
+
+<script src="https://ary.kleinerman.org/assets/main.js"></script>
+<script src="https://ary.kleinerman.org/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

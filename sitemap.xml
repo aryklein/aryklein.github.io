@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ary.kleinerman.org/</loc>
+    <lastmod>2020-06-14T15:28:23-03:00</lastmod>
+  </url><url>
+    <loc>https://ary.kleinerman.org/posts/</loc>
+    <lastmod>2020-06-14T15:28:23-03:00</lastmod>
+  </url><url>
+    <loc>https://ary.kleinerman.org/posts/publishing-your-docker-images-with-github-actions/</loc>
+    <lastmod>2020-06-14T15:28:23-03:00</lastmod>
+  </url><url>
+    <loc>https://ary.kleinerman.org/categories/</loc>
+  </url><url>
+    <loc>https://ary.kleinerman.org/tags/</loc>
+  </url>
+</urlset>
