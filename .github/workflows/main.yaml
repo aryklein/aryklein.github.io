@@ -38,5 +38,4 @@ jobs:
         run: |
           cd public
           git add -A
-          git commit -m "Published with Github Actions"
-          git push origin main
+          (git diff --quiet && git diff --staged --quiet) || (git commit -m "Published with Github Actions" && git push origin main)
