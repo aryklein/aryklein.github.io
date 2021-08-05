@@ -62,6 +62,8 @@ inclusive.
 
 `#` ➜ immediately go to the previous occurrence.
 
+`%` ➜ Find the next item in this line after or under the cursor and jump to its match. Items can be found in the help `:help %`
+
 ### Open a file and let the curson on a desired line
 
 Sometimes it's useful open a file in a specific line. It usually happens to me when I have an error in a file
@@ -90,19 +92,23 @@ and the program specifies the line where the error is.
 
 `r` ➜ replace a single character (does not use insert mode).
 
-`cw` ➜ change (replace) to the end of word.
+`cw` ➜ delete and insert mode (replace) from the cursor position to the end of word.
 
-`c$` ➜ change (replace) to the end of line.
+`c$` ➜ delete and insert mode (replace) from the cursor position to the end of line.
 
-`s` ➜ delete character at cursor and subsitute text.
+`C` ➜ does the same as the previous command `c$`.
 
-`S` ➜ delete line at cursor and substitute text (same as cc).
+`D` ➜ only delete from the cursor position to the end of line.
+
+`s` ➜ delete character at cursor position and change to insert mode.
+
+`S` ➜ delete line at cursor and change to insert mode (same as `cc`).
 
 `u` ➜ undo.
 
 `.` ➜ repeat last command.
 
-`gU` ➜ (visual) chage to UPERCASE.
+`gU` ➜ (visual) change to UPERCASE.
 
 `gu` ➜ (visual) change to lowercase.
 
@@ -131,11 +137,17 @@ line).
 
 `<Ctrl+w> =` ➜ reset the size of all split.
 
-`:vertical terminal` ➜ vertical split and open a terminal.
+`:vertical terminal` ➜ vertical split and open a terminal (in Vim).
 
-`:terminal` ➜ horizontal split and open a terminal.
+`:vsplit | :terminal` ➜ vertical split and open a terminal (in NeoVim).
 
-`<Ctrl+w> N` ➜ exit insert mode in a terminal.
+`:terminal` ➜ horizontal split and open a terminal (in Vim).
+
+`:split | :terminal` ➜ horizontal split and open a terminal (in NeoVim)
+
+`<Ctrl+w> N` ➜ exit insert mode in a terminal (in Vim).
+
+`<Ctrl+\><Ctrl+n>` ➜ exit insert mode in a terminal (in NeoVim).
 
 ## Tabs
 
