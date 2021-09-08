@@ -157,6 +157,14 @@ line).
 
 `gT` ➜ go to the previous tab.
 
+## Managing buffers
+
+Buffers are a convenient way to manage multiple files within a project in Vim
+
+`:ls` ➜ list the current buffers.
+`:b <number>` ➜ show the buffer with the given number.
+`:bd` ➜ delete the current unchaged/saved buffer.
+`:bd!` ➜ discard changes and delete the current buffer.
 
 ## Extras
 
