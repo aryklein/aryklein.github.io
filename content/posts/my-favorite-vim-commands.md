@@ -117,6 +117,8 @@ line).
 
 `ci{ / ci( / ci< / ci[` ➜ change text inside the speech marks (cursor must be inside the).
 
+`J` ➜ joins the line the cursor is on with the line below.
+
 ## Splits
 
 `:split / :sp` ➜ horizontal split.
