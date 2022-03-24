@@ -320,8 +320,8 @@ If you want to see an example, check this respository:
 
 -   <https://github.com/aryklein/flask-hello>
 
-<br><hr>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"><br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
 href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/publishing-your-docker-images-with-github-actions.rst">
-pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
-
+pull request</a>. The code of this article is available on <i class="fab fa-github"></i>
+<br>This blog is written with <i class="fas fa-heart"></i></small></p>

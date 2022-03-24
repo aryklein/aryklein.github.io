@@ -192,8 +192,8 @@ Vim is my favorite text editor for the following reasons:
 Some of these commands take time to get used to but if you can learn to use them, the speed and efficiency
 you achieve with Vim is incredible.
 
-<br><hr>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
 href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/my-favorite-vim-commands.md">
-pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
-
+pull request</a>. The code of this article is available on <i class="fab fa-github"></i>
+<br>This blog is written with <i class="fas fa-heart"></i></small></p>

@@ -209,8 +209,8 @@ Optionally, you can enforce HTTPS encryption for your site. To enable this optio
 Github website, go to your repository `<username>.github.io`, *Settings* and check
 *Enforce HTTPS*. When HTTPS is enforced, your site will only be servedcover HTTPS.
 
-<br><hr>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
 href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/how-to-create-your-blog-for-free.md">
-pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
-
+pull request</a>. The code of this article is available on <i class="fab fa-github"></i>
+<br>This blog is written with <i class="fas fa-heart"></i></small></p>
