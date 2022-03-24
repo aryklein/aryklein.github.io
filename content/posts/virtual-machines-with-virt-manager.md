@@ -4,8 +4,6 @@ date: 2022-03-24T01:00:00-03:00
 draft: false
 ---
 
-# Virtual machines in Linux with virt-manager
-
 virt-manager is a graphical tool for managing virtual machines through `libvirt`. Most usage is with QEMU/KVM virtual
 machines, but Xen and libvirt LXC containers are well supported.
 
@@ -56,7 +54,9 @@ virsh # net-start default
 virsh # net-autostart default
 ```
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 <br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
 href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/virtual-machines-with-virt-manager.md">
-pull request</a>. The code of this article is available on Github <i class="nf nf-fa-github"></i>.</small></p>
+pull request</a>. The code of this article is available on Github <i class="fab fa-github"></i>
+<br>This blog is written with <i class="fas fa-heart"></i></small></p>
