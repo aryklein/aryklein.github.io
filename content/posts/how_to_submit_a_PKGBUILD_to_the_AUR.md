@@ -99,7 +99,7 @@ git commit .SRCINFO PKGBUILD -m "Some cool commit message"
 git push origin master
 ```
 
-> Note: every time you modify the PKGBUILD, you need to update the checksums and the
+> **Note**: every time you modify the PKGBUILD, you need to update the checksums and the
 `.SRCINFO` file.
 
 
