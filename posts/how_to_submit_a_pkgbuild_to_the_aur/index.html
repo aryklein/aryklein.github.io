@@ -14,32 +14,18 @@ SSH public key. To create the account just follow the register steps <a href=htt
 <a href=#step-2-create-a-repostitory class=h-anchor aria-hidden=true>#</a></h2><p>This step could be confusing as you don&rsquo;t have an option in the AUR to create a Git repostitory like you may have
 in other registries.</p><p>The way to do this is cloning an empty repository from the AUR with the name of your package:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git clone ssh://aur@aur.archlinux.org/PKG_NAME.git
 </span></span></code></pre></div><p>A good practice is to create the <code>.gitignore</code> file that ignores everything:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>echo <span style=color:#e6db74>&#34;*&#34;</span> &gt; .gitignore
-</span></span></code></pre></div><p>In this way you have to explicitly <code>add</code> files to your repository by using the <code>-f</code> flag.</p><p>``sh
-git add -f <file></p><pre tabindex=0><code>
-## Step 3: Write your PKGBUILD
-
-This is a shell script that contains the build information required to build the package. Packages in Arch Linux are
-built using the `makepkg` utility. When `makepkg` is run, it searches for a `PKGBUILD` file in the current directory
+</span></span></code></pre></div><p>In this way you have to explicitly <code>add</code> files to your repository by using the <code>-f</code> flag.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git add -f &lt;file&gt;
+</span></span></code></pre></div><h2 id=step-3-write-your-pkgbuild>Step 3: Write your PKGBUILD
+<a href=#step-3-write-your-pkgbuild class=h-anchor aria-hidden=true>#</a></h2><p>This is a shell script that contains the build information required to build the package. Packages in Arch Linux are
+built using the <code>makepkg</code> utility. When <code>makepkg</code> is run, it searches for a <code>PKGBUILD</code> file in the current directory
 and follows the instructions defined in it to either compile or acquire the files to build a package archive called
-(`PKG_NAME.pkg.tar.zst`). The resulting package contains binary files and installation instructions, readily
-installable with `pacman -U PKG_NAME.pkg.tar.zst`.
-
-In this post I don&#39;t cover how to write a `PKGBUILD` but you can find more information in the man pages or in the previus
-link that posted before. You can also use `/usr/share/pacman/PKGBUILD.proto` as a starting point. Be aware though that
-this is a full PKGBUILD containing tons of things that you may not actually need.
-
-&gt; **Note**: You will notice that many other PKGBUILDs, in the `package()` function, use the `install` command to copy
-things into the file system. This is because it can copy files and set permissions in one go.
-
-To update the package checksums in the PKGBUILD file, run `updpkgsums`, which belongs to the `pacman-contrib` package.
-
-## Step 4: build the package
-
-In the folder containing the PKGBUILD you can run the following command to make the package:
-
-```sh
-makepkg -s
-</code></pre><p>This will download the sources and create a <code>.tar.zst</code> file and a directory structure. This is where the <code>.gitignore</code>
+(<code>PKG_NAME.pkg.tar.zst</code>). The resulting package contains binary files and installation instructions, readily
+installable with <code>pacman -U PKG_NAME.pkg.tar.zst</code>.</p><p>In this post I don&rsquo;t cover how to write a <code>PKGBUILD</code> but you can find more information in the man pages or in the previus
+link that posted before. You can also use <code>/usr/share/pacman/PKGBUILD.proto</code> as a starting point. Be aware though that
+this is a full PKGBUILD containing tons of things that you may not actually need.</p><blockquote><p><strong>Note</strong>: You will notice that many other PKGBUILDs, in the <code>package()</code> function, use the <code>install</code> command to copy
+things into the file system. This is because it can copy files and set permissions in one go.</p></blockquote><p>To update the package checksums in the PKGBUILD file, run <code>updpkgsums</code>, which belongs to the <code>pacman-contrib</code> package.</p><h2 id=step-4-build-the-package>Step 4: build the package
+<a href=#step-4-build-the-package class=h-anchor aria-hidden=true>#</a></h2><p>In the folder containing the PKGBUILD you can run the following command to make the package:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>makepkg -s
+</span></span></code></pre></div><p>This will download the sources and create a <code>.tar.zst</code> file and a directory structure. This is where the <code>.gitignore</code>
 file comes into play, avoiding pushing junk to the repository. If you want to test or install the package, you can
 execute:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>sudo pacman -U PKG_NAME.pkg.tar.zst
 </span></span></code></pre></div><h2 id=step-5-create-the-srcinfo-file>Step 5: Create the .SRCINFO file
