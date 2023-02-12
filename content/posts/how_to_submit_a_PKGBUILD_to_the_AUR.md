@@ -105,6 +105,6 @@ git push origin master
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"><br><hr>
 <p style="text-align:center"><br><small>Did you find any errors? Please send me a <a class="reference external"
-href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/how_to_submit_a_package_to_the_aur.md">
+href="https://github.com/aryklein/aryklein.github.io/edit/src/content/posts/how_to_submit_a_PKGBUILD_to_the_AUR.md">
 pull request</a>. The code of this article is available on <i class="fab fa-github"></i>
 <br>This blog is written with <i class="fas fa-heart"></i></small></p>
