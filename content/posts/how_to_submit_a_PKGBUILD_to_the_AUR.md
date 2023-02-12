@@ -43,7 +43,7 @@ echo "*" > .gitignore
 
 In this way you have to explicitly `add` files to your repository by using the `-f` flag.
 
-``sh
+```sh
 git add -f <file>
 ```
 
