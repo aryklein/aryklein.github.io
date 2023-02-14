@@ -18,18 +18,15 @@ articles and maybe you do not need my post:
 
 ## Step 1: create an AUR user account
 
-If you're going to share your PKGBUILD (not binary files) thru the AUR, you need to have an account and submit your
+If you're going to share your PKGBUILD (not binary files) thru the AUR, you need to have an account and upload your
 SSH public key. To create the account just follow the register steps [here](https://aur.archlinux.org/register).
-
-Once you have an acconut, under `My account`, you will be able to upload your public SSH key.
-
 
 ## Step 2: create a repostitory
 
 This step could be confusing as you don't have an option in the AUR to create a Git repostitory like you may have
 in other registries.
 
-The way to do this is cloning an empty repository from the AUR with the name of your package:
+The way to do this is by cloning an empty repository from the AUR with the name of your package:
 
 ```sh
 git clone ssh://aur@aur.archlinux.org/PKG_NAME.git
@@ -49,13 +46,13 @@ git add -f <file>
 
 ## Step 3: Write your PKGBUILD
 
-This is a shell script that contains the build information required to build the package. Packages in Arch Linux are
+This is a shell script that contains the information required to build the package. Packages in Arch Linux are
 built using the `makepkg` utility. When `makepkg` is run, it searches for a `PKGBUILD` file in the current directory
 and follows the instructions defined in it to either compile or acquire the files to build a package archive called
 (`PKG_NAME.pkg.tar.zst`). The resulting package contains binary files and installation instructions, readily
 installable with `pacman -U PKG_NAME.pkg.tar.zst`.
 
-In this post I don't cover how to write a `PKGBUILD` but you can find more information in the man pages or in the previus
+In this post I don't cover how to write a `PKGBUILD` but you can find more information in the man pages or in the previous
 link that posted before. You can also use `/usr/share/pacman/PKGBUILD.proto` as a starting point. Be aware though that
 this is a full PKGBUILD containing tons of things that you may not actually need.
 
@@ -66,7 +63,7 @@ To update the package checksums in the PKGBUILD file, run `updpkgsums`, which be
 
 ## Step 4: build the package
 
-In the folder containing the PKGBUILD you can run the following command to make the package:
+In the directory containing the PKGBUILD you can run the following command to build the package:
 
 ```sh
 makepkg -s
