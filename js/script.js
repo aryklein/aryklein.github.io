@@ -1,5 +1,10 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Add a class to body after page load for initial animations
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 100);
+    
     const navLinks = document.querySelectorAll('nav a');
     
     navLinks.forEach(link => {
@@ -43,12 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animation for timeline items
     const animateOnScroll = function() {
         const timelineItems = document.querySelectorAll('.timeline-item');
-        const skillCategories = document.querySelectorAll('.skill-category');
         const projectCards = document.querySelectorAll('.project-card');
         
-        const elements = [...timelineItems, ...skillCategories, ...projectCards];
-        
-        elements.forEach(item => {
+        // Animate timeline items and project cards
+        [...timelineItems, ...projectCards].forEach(item => {
             const position = item.getBoundingClientRect().top;
             const screenPosition = window.innerHeight / 1.2;
             
@@ -56,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.classList.add('animate');
             }
         });
+        
+        // Removed parallax effect for header
     };
     
     // Run on load
@@ -73,4 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (footerYear) {
         footerYear.textContent = footerYear.textContent.replace('2025', currentYear);
     }
+});
+
+// Animated typing effect for section titles
+document.addEventListener('DOMContentLoaded', function() {
+    const sectionTitles = document.querySelectorAll('section > h2');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('title-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    sectionTitles.forEach(title => {
+        observer.observe(title);
+    });
 });
